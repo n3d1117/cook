@@ -78,7 +78,7 @@ struct UpdateProvisioningProfile: ExecutableRecipe {
                                                 }
                                             } else {
                                                 logger.log(.error, "Failed to delete app id")
-                                                exit(EXIT_FAILURE)
+                                                return _abort(AppIdError.failedToDeleteAppId)
                                             }
                                         }
                                     }
@@ -96,7 +96,7 @@ struct UpdateProvisioningProfile: ExecutableRecipe {
                                 }
                             } else {
                                 logger.log(.error, "App id with bundle identifier \(self.bundleId) does not exist!")
-                                exit(EXIT_FAILURE)
+                                return _abort(AppIdError.missingAppId)
                             }
                         }
                     }

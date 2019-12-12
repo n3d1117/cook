@@ -47,6 +47,7 @@ enum CertificateError: Error {
 
 enum AppIdError: Error {
     case missingAppId
+    case failedToDeleteAppId
 }
 
 enum DeviceError: Error {

@@ -65,7 +65,7 @@ struct RegisterBundleId: ExecutableRecipe {
                                                 return register()
                                             } else {
                                                 logger.log(.error, "Failed to delete app id")
-                                                exit(EXIT_FAILURE)
+                                                return _abort(AppIdError.failedToDeleteAppId)
                                             }
                                         }
                                     }
