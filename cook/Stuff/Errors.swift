@@ -10,8 +10,7 @@ enum UsageError: Error {
     case missingAppleId
     case missingPassword
     
-    case missingInputCSR
-    case missingOutputPEM
+    case missingOutput
     
     case missingAppName
     case missingAppBundleId

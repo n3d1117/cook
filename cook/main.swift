@@ -23,16 +23,27 @@ func main() {
         exit(EXIT_SUCCESS)
     }
     
-    let usesTheForce = CLI.force()
+    let f = CLI.force()
 
     // Create certificate
     if CLI.containsRecipe(.createCertificate) {
         logger.log(.info, "Recipe: create certificate")
-        guard let inputCsrPath = CLI.parseArgument(.inputCsr) else { return _abort(UsageError.missingInputCSR) }
-        guard var outputPemPath = CLI.parseArgument(.outputPem) else { return _abort(UsageError.missingOutputPEM) }
-        outputPemPath = Utils.adjustOutputPath(from: outputPemPath, _extension: "pem")
-        logger.log(.verbose, "Input CSR: \(inputCsrPath), output PEM: \(outputPemPath)")
-        CreateCertificate(csrPath: inputCsrPath, pemPath: outputPemPath, force: usesTheForce).execute()
+        var csr = "", pem = "", p12 = "", p12Password = ""
+        if let inputCsr = CLI.parseArgument(.inputCsr) {
+            csr = inputCsr
+            logger.log(.verbose, "Input CSR: \(csr)")
+        }
+        if let outputPemPath = CLI.parseArgument(.outputPem) {
+            pem = Utils.adjustOutputPath(from: outputPemPath, _extension: "pem")
+            logger.log(.verbose, "Output PEM: \(pem)")
+        } else if let outputP12Path = CLI.parseArgument(.outputP12) {
+            p12 = Utils.adjustOutputPath(from: outputP12Path, _extension: "p12")
+            p12Password = CLI.parseArgument(.p12Password) ?? ""
+            logger.log(.verbose, "Output P12: \(p12), P12 password: \(p12Password)")
+        } else {
+            return _abort(UsageError.missingOutput)
+        }
+        CreateCertificate(csrPath: csr, pemPath: pem, p12Path: p12, p12Pass: p12Password, inputCsr: csr != "", usesPem: pem != "", force: f).execute()
     }
     
     // Register app id
@@ -41,7 +52,7 @@ func main() {
         guard let appName = CLI.parseArgument(.appName) else { return _abort(UsageError.missingAppName) }
         guard let appBundleId = CLI.parseArgument(.appBundleId) else { return _abort(UsageError.missingAppBundleId) }
         logger.log(.verbose, "App name: \(appName), bundle id: \(appBundleId)")
-        RegisterBundleId(appName: appName, bundleId: appBundleId, force: usesTheForce).execute()
+        RegisterBundleId(appName: appName, bundleId: appBundleId, force: f).execute()
     }
     
     // Register device
@@ -60,7 +71,7 @@ func main() {
         guard var outputProfile = CLI.parseArgument(.outputProfile) else { return _abort(UsageError.missingOutputProfile) }
         outputProfile = Utils.adjustOutputPath(from: outputProfile, _extension: "mobileprovision")
         logger.log(.verbose, "Bundle id: \(bundleId), output profile: \(outputProfile)")
-        UpdateProvisioningProfile(bundleId: bundleId, outputPath: outputProfile, force: usesTheForce).execute()
+        UpdateProvisioningProfile(bundleId: bundleId, outputPath: outputProfile, force: f).execute()
     }
         
     // Download provisioning profiles

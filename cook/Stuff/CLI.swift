@@ -18,6 +18,8 @@ enum CLI {
         // Certificates
         case inputCsr = "input-csr"
         case outputPem = "output-pem"
+        case outputP12 = "output-p12"
+        case p12Password = "p12-password"
         
         // App ids
         case appName = "app-name"

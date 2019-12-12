@@ -58,7 +58,7 @@ enum Utils {
     }
     
     static func header() {
-        print("#\n# \(binaryName()) | by ned\n# (soon) https://github.com/n3d1117/cook\n#\n")
+        print("#\n# \(binaryName()) | by ned\n# https://github.com/n3d1117/cook\n#\n")
     }
 
     static func showHelp() {
@@ -75,8 +75,10 @@ enum Utils {
         print("    COOK_APPLEID_PASSWORD\n")
         print("Recipes:\n")
         print("  1) create_certificate   Create certificate with arguments:\n")
-        print("    --input-csr           Path to CSR file")
+        print("    --input-csr           Optional path to CSR file")
         print("    --output-pem          Path/Directory where to save output PEM file")
+        print("    --output-p12          Path/Directory where to save output p12 file")
+        print("    --p12-password        Optional P12 password, defaults to blank")
         print("    -f                    Force certificate revocation if needed\n")
         print("  2) register_app         Register app with arguments:\n")
         print("    --app-name            App name to register")
