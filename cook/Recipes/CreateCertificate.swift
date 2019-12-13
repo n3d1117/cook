@@ -120,12 +120,14 @@ struct CreateCertificate: ExecutableRecipe {
                                             switch result {
                                             case .failure(let error as NSError):
                                                 return handle(error: error)
-                                            case .success(_):
+                                            case .success(let certAdded):
+                                                let privateKey: Data? = certAdded.privateKey
                                                 API.fetchCertificates(team: team, session: session) { result in
                                                     switch result {
                                                     case .failure(let error): return _abort(error)
                                                     case .success(let certs):
                                                         guard let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
+                                                        cert.privateKey = privateKey
                                                         return save(cert: cert)
                                                     }
                                                 }
