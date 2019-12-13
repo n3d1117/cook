@@ -41,7 +41,7 @@ struct RegisterBundleId: ExecutableRecipe {
                             case .failure(let error): return _abort(error)
                             case .success(let appId):
                                 logger.log(.success, "Added app id: \(appId)")
-                                exit(EXIT_SUCCESS)
+                                return _success()
                             }
                         }
                     }
@@ -72,7 +72,7 @@ struct RegisterBundleId: ExecutableRecipe {
                                     
                                 } else {
                                     logger.log(.success, "Nothing to do, exiting... (use -f to force delete)")
-                                    exit(EXIT_SUCCESS)
+                                    return _success()
                                 }
                             } else {
                                 return register()

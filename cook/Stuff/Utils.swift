@@ -47,6 +47,18 @@ enum Utils {
         return output
     }
     
+    static func dictionaryForFailedResult(with error: Error) -> [String: String] {
+        return ["success": "false", "error": "\(error)"]
+    }
+    
+    static func dictionaryForSuccess(with values: [String: String]) -> [String: String] {
+        var dict: [String: String] = ["success": "true"]
+        for (key, value) in values {
+            dict[key] = value
+        }
+        return dict
+    }
+    
     @discardableResult
     static func shell(_ args: String...) -> Int32 {
         let task = Process()
@@ -58,14 +70,15 @@ enum Utils {
     }
     
     static func header() {
-        print("#\n# \(binaryName()) | by ned\n# https://github.com/n3d1117/cook\n#\n")
+        print("#\n#  \(binaryName()) | made with ♡ by ned\n#  https://github.com/n3d1117/cook\n#\n")
     }
 
     static func showHelp() {
         header()
         print("Usage: ./\(binaryName()) [AUTH] [RECIPE]\n")
         print("  -h, --help              prints usage information")
-        print("  -v, --verbose           enables verbose mode\n")
+        print("  -v, --verbose           enables verbose mode")
+        print("  -j, --json              use json output (all --output-* args are ignored in this mode)\n")
         print("Authentication:\n")
         print("  To authenticate pass the following arguments to any recipe:")
         print("    --appleId             Apple ID Email")
@@ -93,6 +106,18 @@ enum Utils {
         print("    -f                    Force remove app ID and then readd it\n")
         print("  5) download_profiles    Download provisioning profiles with arguments:\n")
         print("    --bundle-id           Optional, to specify an app's identifier (defaults to all apps)")
-        print("    --output-folder       Directory where to save the profiles\n\n")
+        print("    --output-folder       Directory where to save the profiles\n")
+        print("Possible JSON Responses (--json flag):\n")
+        print("   'success':             'true' or 'false'")
+        print("   'error':               Error description (if success is false)\n")
+        print(" create_certificate recipe")
+        print("   'pem_cert':            Plain text PEM cert")
+        print("   'base64_p12_cert':     Base 64 encoded P12 cert")
+        print("   'p12_password':        Plain text P12 password\n")
+        print(" update_profile recipe")
+        print("   'base64_profile':      Base 64 encoded mobileprovision\n")
+        print(" download_profiles recipe")
+        print("   'profiles_count':      Number of profiles downloaded")
+        print("   'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)\n")
     }
 }

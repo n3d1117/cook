@@ -39,7 +39,7 @@ struct RegisterDevice: ExecutableRecipe {
                         case .success(let devices):
                             if let _ = devices.first(where: { $0.identifier == self.udid }) {
                                 logger.log(.success, "Device is already registered!")
-                                exit(EXIT_SUCCESS)
+                                return _success()
                             } else {
                                 logger.log(.info, "Registering device...")
                                 API.registerDevice(name: self.name, udid: self.udid, team: team, session: session) { result in
@@ -47,7 +47,7 @@ struct RegisterDevice: ExecutableRecipe {
                                     case .failure(let error): return _abort(error)
                                     case .success(_):
                                         logger.log(.success, "Device registered successfully!")
-                                        exit(EXIT_SUCCESS)
+                                        return _success()
                                     }
                                 }
                             }

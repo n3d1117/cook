@@ -75,6 +75,10 @@ enum CLI {
         return CommandLine.arguments.contains(recipe.rawValue)
     }
     
+    static func containsArgument(_ arg: Argument) -> Bool {
+        return CommandLine.arguments.contains("--" + arg.rawValue)
+    }
+    
     static func help() -> Bool {
         return CommandLine.arguments.contains("-h") || CommandLine.arguments.contains("--help")
     }
@@ -85,5 +89,9 @@ enum CLI {
     
     static func verbose() -> Bool {
         return CommandLine.arguments.contains("-v") || CommandLine.arguments.contains("--verbose")
+    }
+    
+    static func outputAsJson() -> Bool {
+        return CommandLine.arguments.contains("-j") || CommandLine.arguments.contains("--json")
     }
 }

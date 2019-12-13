@@ -35,6 +35,7 @@ struct DownloadProvisioningProfiles: ExecutableRecipe {
                     func saveAllProfiles(for appIds: [ALTAppID]) {
                         
                         let taskGroup = DispatchGroup()
+                        var encodedProfiles: [String] = []
                         
                         for appId in appIds {
                             logger.log(.info, "Fetching mobileprovision...")
@@ -51,15 +52,28 @@ struct DownloadProvisioningProfiles: ExecutableRecipe {
                                     logger.log(.verbose, "Saving mobileprovision...")
                                     logger.log(.verbose, "Expiration date: \(profile.expirationDate)")
                                     guard !profile.data.isEmpty else { return _abort(ProvisioningError.emptyData) }
-                                    let outputFilePath = Utils.adjustOutputPath(from: self.outputPath, _extension: "mobileprovision")
-                                    Utils.save(data: profile.data, to: outputFilePath)
+                                    if outputAsJSON {
+                                        encodedProfiles.append(profile.data.base64EncodedString())
+                                    } else {
+                                        let outputFilePath = Utils.adjustOutputPath(from: self.outputPath, _extension: "mobileprovision")
+                                        Utils.save(data: profile.data, to: outputFilePath)
+                                    }
                                 }
                             }
                         }
                         
                         taskGroup.notify(queue: .main) {
-                            logger.log(.success, "Done! All profiles have been saved to \(self.outputPath)")
-                            exit(EXIT_SUCCESS)
+                            if outputAsJSON {
+                                var dict: [String: String] = [:]
+                                dict["profiles_count"] = "\(encodedProfiles.count)"
+                                for (index, profile) in encodedProfiles.enumerated() {
+                                    dict["base64_profile_\(index+1)"] = profile
+                                }
+                                return _success(dict)
+                            } else {
+                                logger.log(.success, "Done! All profiles have been saved to \(self.outputPath)")
+                                return _success()
+                            }
                         }
                     }
                     

@@ -93,6 +93,15 @@ struct CreateCertificate: ExecutableRecipe {
                                     }
                                     
                                     func save(cert: ALTCertificate) {
+                                        if outputAsJSON {
+                                            if self.usesOutputPem {
+                                                guard let certData = cert.data else { return _abort(CertificateError.missingData) }
+                                                return _success(["pem_cert": String(decoding: certData, as: UTF8.self)])
+                                            } else {
+                                                guard let certP12Data = cert.encryptedP12Data(withPassword: self.p12Password) else { return _abort(CertificateError.missingData) }
+                                                return _success(["base64_p12_cert": certP12Data.base64EncodedString(), "p12_password": self.p12Password])
+                                            }
+                                        }
                                         if self.usesOutputPem {
                                             guard let certData = cert.data else { return _abort(CertificateError.missingData) }
                                             Utils.save(data: certData, to: self.pemPath)
@@ -102,7 +111,7 @@ struct CreateCertificate: ExecutableRecipe {
                                             Utils.save(data: certP12Data, to: self.p12Path)
                                             logger.log(.success, "Done! Saved encrypted P12 cert to \(self.p12Path)")
                                         }
-                                        exit(EXIT_SUCCESS)
+                                        return _success()
                                     }
                                     
                                     func createFromSelfGeneratedCsr() {

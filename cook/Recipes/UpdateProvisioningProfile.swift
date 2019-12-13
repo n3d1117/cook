@@ -51,9 +51,13 @@ struct UpdateProvisioningProfile: ExecutableRecipe {
                                             logger.log(.verbose, "Saving mobileprovision...")
                                             logger.log(.verbose, "Expiration date: \(profile.expirationDate)")
                                             guard !profile.data.isEmpty else { return _abort(ProvisioningError.emptyData) }
-                                            Utils.save(data: profile.data, to: self.outputPath)
-                                            logger.log(.success, "Done! Saved mobileprovision to \(self.outputPath)")
-                                            exit(EXIT_SUCCESS)
+                                            if outputAsJSON {
+                                                return _success(["base64_profile": profile.data.base64EncodedString()])
+                                            } else {
+                                                Utils.save(data: profile.data, to: self.outputPath)
+                                                logger.log(.success, "Done! Saved mobileprovision to \(self.outputPath)")
+                                                return _success()
+                                            }
                                         }
                                     }
                                 }
