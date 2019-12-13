@@ -48,11 +48,11 @@ enum Utils {
     }
     
     static func dictionaryForFailedResult(with error: Error) -> [String: String] {
-        return ["success": "false", "error": "\(error)"]
+        return ["success": "0", "error": "\(error)"]
     }
     
     static func dictionaryForSuccess(with values: [String: String]) -> [String: String] {
-        var dict: [String: String] = ["success": "true"]
+        var dict: [String: String] = ["success": "1"]
         for (key, value) in values {
             dict[key] = value
         }
@@ -108,8 +108,8 @@ enum Utils {
         print("    --bundle-id           Optional, to specify an app's identifier (defaults to all apps)")
         print("    --output-folder       Directory where to save the profiles\n")
         print("Possible JSON Responses (--json flag):\n")
-        print("   'success':             'true' or 'false'")
-        print("   'error':               Error description (if success is false)\n")
+        print("   'success':             '0' or '1'")
+        print("   'error':               Error description (if success is 0)\n")
         print(" create_certificate recipe")
         print("   'pem_cert':            Plain text PEM cert")
         print("   'base64_p12_cert':     Base 64 encoded P12 cert")
