@@ -15,9 +15,7 @@ struct Logger {
     }
     
     func json(from dictionary: [String: String]) {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        if let jsonData = try? encoder.encode(dictionary), let jsonString = String(data: jsonData, encoding: .utf8) {
+        if let jsonData = try? JSONEncoder().encode(dictionary), let jsonString = String(data: jsonData, encoding: .utf8) {
             print(jsonString)
         }
     }
