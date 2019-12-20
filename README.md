@@ -178,4 +178,4 @@ $ open cook.xcodeproj
 * [appdb](https://appdb.to/) for the idea!
 
 ## License
-MIT License. See [LICENSE](LICENSE) file for further information.
+Licensed under GNU General Public License v3.0. See [LICENSE](LICENSE) file for further information.
