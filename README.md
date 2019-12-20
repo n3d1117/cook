@@ -107,7 +107,7 @@ Here are some real world examples on how to use cook (authentication part is omi
 	./cook register_app --app-name "My Fancy App" --app-bundle-id my.fancy.app
 	```
 
-- Register a device named `My iPhone 11 Pro` with udid `DEVICE_UDID `:
+- Register a device named `My iPhone 11 Pro` with udid `DEVICE_UDID`:
 	
 	```bash
 	./cook register_device --name "My iPhone 11 Pro"  --udid DEVICE_UDID
