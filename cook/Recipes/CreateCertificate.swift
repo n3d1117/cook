@@ -10,6 +10,7 @@ import AltSign
 
 struct CreateCertificate: ExecutableRecipe {
 
+    var machinePrefix: String
     var csrPath: String
     var pemPath: String
     var p12Path: String
@@ -18,7 +19,8 @@ struct CreateCertificate: ExecutableRecipe {
     var usesOutputPem: Bool
     var force: Bool
     
-    init(csrPath: String, pemPath: String, p12Path: String, p12Pass: String, inputCsr: Bool, usesPem: Bool, force: Bool) {
+    init(machinePrefix: String, csrPath: String, pemPath: String, p12Path: String, p12Pass: String, inputCsr: Bool, usesPem: Bool, force: Bool) {
+        self.machinePrefix = machinePrefix
         self.csrPath = csrPath
         self.pemPath = pemPath
         self.p12Path = p12Path
@@ -66,7 +68,7 @@ struct CreateCertificate: ExecutableRecipe {
                                     }
                                 }
                                 
-                                if let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.machinePrefix) ?? false }) {
+                                if let cert = certs.first(where: { $0.machineName?.hasPrefix(self.machinePrefix) ?? false }) {
                                     if self.force {
                                         logger.log(.info, "Certificate already exists, revoking...")
                                         return revoke(cert: cert)
@@ -116,7 +118,7 @@ struct CreateCertificate: ExecutableRecipe {
                                     
                                     func createFromSelfGeneratedCsr() {
                                         logger.log(.info, "Using self generated CSR...")
-                                        API.createCertificate(machineName: Utils.machinePrefix, team: team, session: session) { result in
+                                        API.createCertificate(machineName: self.machinePrefix, team: team, session: session) { result in
                                             switch result {
                                             case .failure(let error as NSError):
                                                 return handle(error: error)
@@ -126,7 +128,7 @@ struct CreateCertificate: ExecutableRecipe {
                                                     switch result {
                                                     case .failure(let error): return _abort(error)
                                                     case .success(let certs):
-                                                        guard let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
+                                                        guard let cert = certs.first(where: { $0.machineName?.hasPrefix(self.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
                                                         cert.privateKey = privateKey
                                                         return save(cert: cert)
                                                     }
@@ -137,7 +139,7 @@ struct CreateCertificate: ExecutableRecipe {
                                     
                                     func createFromEncodedCsr(csr: String) {
                                         logger.log(.info, "Using input CSR...")
-                                        API.createCertificate(encodedCSR: csr, prefix: Utils.machinePrefix, team: team, session: session) { result in
+                                        API.createCertificate(encodedCSR: csr, prefix: self.machinePrefix, team: team, session: session) { result in
                                             switch result {
                                             case .failure(let error as NSError):
                                                 return handle(error: error)
@@ -146,7 +148,7 @@ struct CreateCertificate: ExecutableRecipe {
                                                     switch result {
                                                     case .failure(let error): return _abort(error)
                                                     case .success(let certs):
-                                                        guard let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
+                                                        guard let cert = certs.first(where: { $0.machineName?.hasPrefix(self.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
                                                         return save(cert: cert)
                                                     }
                                                 }

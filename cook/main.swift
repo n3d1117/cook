@@ -35,7 +35,13 @@ func main() {
     // Create certificate
     if CLI.containsRecipe(.createCertificate) {
         logger.log(.info, "Recipe: create certificate")
-        var csr = "", pem = "", p12 = "", p12Password = "", usesPem = true
+        var machinePrefix = "", csr = "", pem = "", p12 = "", p12Password = "", usesPem = true
+        if let prefix = CLI.parseArgument(.machinePrefix) {
+            machinePrefix = prefix
+            logger.log(.verbose, "Machine prefix: \(machinePrefix)")
+        } else {
+            machinePrefix = Utils.defaulMachinePrefix
+        }
         if let inputCsr = CLI.parseArgument(.inputCsr) {
             csr = inputCsr
             logger.log(.verbose, "Input CSR: \(csr)")
@@ -56,7 +62,7 @@ func main() {
         } else {
             return _abort(UsageError.missingOutput)
         }
-        CreateCertificate(csrPath: csr, pemPath: pem, p12Path: p12, p12Pass: p12Password, inputCsr: csr != "", usesPem: usesPem, force: f).execute()
+        CreateCertificate(machinePrefix: machinePrefix, csrPath: csr, pemPath: pem, p12Path: p12, p12Pass: p12Password, inputCsr: csr != "", usesPem: usesPem, force: f).execute()
     }
     
     // Register app id

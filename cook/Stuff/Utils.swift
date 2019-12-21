@@ -19,7 +19,7 @@ protocol ExecutableRecipe {
 
 enum Utils {
     
-    static let machinePrefix: String = "appdb - "
+    static let defaulMachinePrefix: String = "cook"
     
     static func binaryName() -> String {
         guard let fullName = CommandLine.arguments.first else { return "cook" }
@@ -88,6 +88,7 @@ enum Utils {
         print("    COOK_APPLEID_PASSWORD\n")
         print("Recipes:\n")
         print("  1) create_certificate   Create certificate with arguments:\n")
+        print("    --machine-name        Optional machine name (defaults to 'cook')")
         print("    --input-csr           Optional path to CSR file")
         print("    --output-pem          Path/Directory where to save output PEM file")
         print("    --output-p12          Path/Directory where to save output p12 file")

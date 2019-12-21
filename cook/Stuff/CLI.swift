@@ -16,6 +16,7 @@ enum CLI {
         case password
         
         // Certificates
+        case machinePrefix = "machine-name"
         case inputCsr = "input-csr"
         case outputPem = "output-pem"
         case outputP12 = "output-p12"

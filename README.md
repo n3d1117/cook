@@ -28,7 +28,8 @@ NOTE: Your Apple ID is **never** sent to anyone but Apple. Feel free to create a
 - **`create_certificate`** Create certificate (`.pem` or `.p12`) with arguments:
 
 	```
-	--input-csr         Optional path to an existing CSR file.
+	--machine-name      Optional machine name (defaults to 'cook')
+	--input-csr         Optional path to an existing CSR file
 	--output-pem        Path/Directory where to save output PEM file
 	--output-p12        Path/Directory where to save output p12 file
 	--p12-password      Optional P12 password, defaults to blank
