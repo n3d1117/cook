@@ -151,7 +151,7 @@ Then enable the plugin:
 * Click `Apply and Restart Mail`
 * Done!
 
-<img src="https://user-images.githubusercontent.com/11541888/71265083-c8fd9900-2345-11ea-9ac9-73031d9faf0e.png" alt="Cook mail plugin" title="mail plguin" height=450>
+<img src="https://user-images.githubusercontent.com/11541888/71265083-c8fd9900-2345-11ea-9ac9-73031d9faf0e.png" alt="Cook mail plugin" title="mail plugin" width="50%">
 
  </details>
 
@@ -176,6 +176,7 @@ $ open cook.xcodeproj
 ## Credits
 * Riley Testut's [AltSign](https://github.com/rileytestut/AltSign) framework (part of [AltStore](https://altstore.io/))
 * Riley Testut's `AltPlugin.mailbundle` (part of [AltServer](https://github.com/rileytestut/AltStore/tree/master/AltServer))
+* [Kabir Oberai](https://twitter.com/kabiroberai) for the authentication code in AltSign
 * [appdb](https://appdb.to/) for the idea!
 
 ## License
