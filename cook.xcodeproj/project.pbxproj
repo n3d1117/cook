@@ -14,7 +14,8 @@
 		81B7AF2E239B1661008D8D51 /* DownloadProvisioningProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7AF2D239B1661008D8D51 /* DownloadProvisioningProfiles.swift */; };
 		81BB91EF2396DB9300EED6B7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB91EE2396DB9300EED6B7 /* main.swift */; };
 		81C0A0AB23A1953D005B3D68 /* AltSign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0A0A623A19519005B3D68 /* AltSign.framework */; };
-		81C0A0AC23A1953D005B3D68 /* AltSign.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0A0A623A19519005B3D68 /* AltSign.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		81C0A0AC23A1953D005B3D68 /* AltSign.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0A0A623A19519005B3D68 /* AltSign.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		81D2959B23B14C03005B8444 /* ResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2959A23B14C03005B8444 /* ResignApp.swift */; };
 		81FACCDF239948BF00C15308 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCD4239948BF00C15308 /* API.swift */; };
 		81FACCE0239948BF00C15308 /* CreateCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCD9239948BF00C15308 /* CreateCertificate.swift */; };
 		81FACCE1239948BF00C15308 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCDB239948BF00C15308 /* Authenticator.swift */; };
@@ -95,6 +96,7 @@
 		81BB91EE2396DB9300EED6B7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		81BB92092396E63900EED6B7 /* cook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cook.entitlements; sourceTree = "<group>"; };
 		81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AltSign.xcodeproj; path = AltSign/AltSign.xcodeproj; sourceTree = "<group>"; };
+		81D2959A23B14C03005B8444 /* ResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignApp.swift; sourceTree = "<group>"; };
 		81FACCD4239948BF00C15308 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = ../API/API.swift; sourceTree = "<group>"; };
 		81FACCD9239948BF00C15308 /* CreateCertificate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCertificate.swift; sourceTree = "<group>"; };
 		81FACCDB239948BF00C15308 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				81B7AF29239ABC1E008D8D51 /* RegisterDevice.swift */,
 				81B7AF2B239AE8DF008D8D51 /* UpdateProvisioningProfile.swift */,
 				81B7AF2D239B1661008D8D51 /* DownloadProvisioningProfiles.swift */,
+				81D2959A23B14C03005B8444 /* ResignApp.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FACCE2239948BF00C15308 /* Utils.swift in Sources */,
+				81D2959B23B14C03005B8444 /* ResignApp.swift in Sources */,
 				816EA9DD2399BB1A000E2D87 /* RegisterBundleId.swift in Sources */,
 				81FACCE0239948BF00C15308 /* CreateCertificate.swift in Sources */,
 				81FACCE3239948BF00C15308 /* CLI.swift in Sources */,

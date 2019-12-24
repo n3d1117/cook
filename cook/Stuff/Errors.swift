@@ -23,6 +23,8 @@ enum UsageError: Error {
     case missingOutputProfiles
     
     case outputMustBeAFolder
+    
+    case missingIpaPath
 }
 
 enum AuthError: Error {
@@ -57,4 +59,13 @@ enum DeviceError: Error {
 enum ProvisioningError: Error {
     case emptyData
     case missingProfile
+}
+
+enum ResignError: Error {
+    case failedToResign
+    case ipaPathNotValid
+    case outputIpaPathNotValid
+    case certIsNotInP12Format
+    case ipaFileNotFound
+    case invalidP12
 }

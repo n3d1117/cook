@@ -1,7 +1,7 @@
 # Cook 👨🏻‍🍳
-Cook is a macOS command line tool wrapped around [Riley Testut's AltSign](https://github.com/rileytestut/AltSign) to automate common iOS development tasks, such as managing iOS certificates, app identifiers, devices and provisioning profiles. It works with Apple IDs not enrolled in the developer program.
+Cook is a macOS command line tool wrapped around [Riley Testut's AltSign](https://github.com/rileytestut/AltSign) to automate common iOS development tasks, such as managing iOS certificates, app identifiers, devices, provisioning profiles and resigning `.ipa` files. It works with free Apple IDs (not enrolled in the developer program).
 
-<img src="https://user-images.githubusercontent.com/11541888/71269972-c48aad80-2350-11ea-809a-50dbe92daa8e.png" alt="Cook demo" title="cook">
+<img src="https://user-images.githubusercontent.com/11541888/71422933-f1f39600-2685-11ea-8e03-06061e74398f.png" alt="Cook demo" title="cook">
 
 ## Usage
 ```
@@ -61,6 +61,15 @@ NOTE: Your Apple ID is **never** sent to anyone but Apple. Feel free to create a
 	--bundle-id         Optional, to specify an app's identifier (defaults to all apps)
 	--output-folder     Directory where to save the profiles
 	```
+- **`resign`** Resign ipa file with arguments:
+
+	```
+	--ipa                 Path to .ipa file to resign
+	--output-ipa          Optional path to resigned ipa (if not specified, original is overwritten)
+	--p12                 Optional path to P12 certificate to use for resigning
+	--p12-password        Optional P12 password
+	--machine-name        Optional machine name to use when adding certificate (defaults to 'cook', ignored if --p12 is specified)
+	```
 
 ### JSON Mode
 In JSON mode (`-j, --json` flag), command output is formatted as JSON. 
@@ -111,7 +120,7 @@ Here are some real world examples on how to use cook (authentication part is omi
 - Register a device named `My iPhone 11 Pro` with udid `DEVICE_UDID`:
 	
 	```bash
-	./cook register_device --name "My iPhone 11 Pro"  --udid DEVICE_UDID
+	./cook register_device --name "My iPhone 11 Pro"  --udid "DEVICE_UDID"
 	```
 
 - Update and export a provisioning profile for app with bundle identifier `my.fancy.app`:
@@ -124,6 +133,18 @@ Here are some real world examples on how to use cook (authentication part is omi
 
 	```bash
 	./cook download_profiles --output-folder ~/desktop/profiles/
+	```
+
+- Resign `.ipa` file using a local p12 certificate (obtained with `create_certificate` recipe):
+
+	```bash
+	./cook resign --ipa ./app.ipa --p12 ./cert.p12 --p12-password "123"
+	```
+
+- Resign `.ipa` file using a new certificate (`-f` revokes current one if necessary)
+
+	```bash
+	./cook resign --ipa ./app.ipa --output-ipa ./app_signed.ipa -f
 	```
 </details>
 

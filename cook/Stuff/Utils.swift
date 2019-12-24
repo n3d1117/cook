@@ -75,7 +75,7 @@ enum Utils {
 
     static func showHelp() {
         header()
-        print("Usage: ./\(binaryName()) [AUTH] [RECIPE]\n")
+        print("Usage: ./\(binaryName()) [AUTHENTICATION] [RECIPE] [RECIPE_ARGUMENTS]\n")
         print("  -h, --help              prints usage information")
         print("  -v, --verbose           enables verbose mode")
         print("  -j, --json              use json output (all --output-* args are ignored in this mode)\n")
@@ -108,6 +108,13 @@ enum Utils {
         print("  5) download_profiles    Download provisioning profiles with arguments:\n")
         print("    --bundle-id           Optional, to specify an app's identifier (defaults to all apps)")
         print("    --output-folder       Directory where to save the profiles\n")
+        print("  5) resign               Resign ipa file with arguments:\n")
+        print("    --ipa                 Path to .ipa file to resign")
+        print("    --output-ipa          Optional path to resigned ipa (if not specified, original is overwritten)")
+        print("    --p12                 Optional path to P12 certificate to use for resigning")
+        print("    --p12-password        Optional P12 password")
+        print("    --machine-name        Optional machine name to use when adding certificate (defaults to 'cook', ignored if --p12 is specified)")
+        print("    -f                    Revoke certificate (if --p12 is not specified) if needed, register app id if needed\n")
         print("Possible JSON Responses (--json flag):\n")
         print("   'success':             '0' or '1'")
         print("   'error':               Error description (if success is 0)\n")

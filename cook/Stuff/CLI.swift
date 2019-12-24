@@ -35,6 +35,11 @@ enum CLI {
         case outputProfile = "output-profile"
         case outputProfiles = "output-folder"
         
+        // Resign ipa
+        case ipaPath = "ipa"
+        case outputIpaPath = "output-ipa"
+        case inputP12 = "p12"
+        
         func allowedInEnvironmentVariables() -> Bool {
             return self == .appleId || self == .password
         }
@@ -54,6 +59,7 @@ enum CLI {
         case registerDevice = "register_device"
         case updateProvisioningProfile = "update_profile"
         case downloadProvisioningProfiles = "download_profiles"
+        case resignIpa = "resign"
     }
     
     static func noArgumentsProvided() -> Bool {

@@ -153,5 +153,19 @@ enum API {
             }
         }
     }
+    
+    /* RESIGN APP */
+    
+    static func resignApp(app: ALTApplication, team: ALTTeam, certificate: ALTCertificate, profile: ALTProvisioningProfile, completion: @escaping((Result<Bool, Error>) -> Void)) {
+        ALTSigner(team: team, certificate: certificate).signApp(at: app.fileURL, provisioningProfiles: [profile]) { (success, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                logger.log(.verbose, "Resign completed with result: \(success)")
+                completion(.success(success))
+            }
+            
+        }
+    }
 
 }

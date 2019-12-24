@@ -113,6 +113,42 @@ func main() {
         }
         DownloadProvisioningProfiles(bundleId: bundleId, outputPath: outputProfiles).execute()
     }
+        
+    // Resign .ipa
+    else if CLI.containsRecipe(.resignIpa) {
+        logger.log(.info, "Recipe: resign ipa")
+        var machinePrefix = "", p12Path = "", p12Password = "", outputIpaUrl: URL
+        
+        guard let ipaPath = CLI.parseArgument(.ipaPath) else { return _abort(UsageError.missingIpaPath) }
+        guard ipaPath.hasSuffix(".ipa") else { return _abort(ResignError.ipaPathNotValid) }
+        logger.log(.verbose, "ipa path: \(ipaPath)")
+        let ipaUrl = URL(fileURLWithPath: ipaPath)
+        
+        if let outputIpaPath = CLI.parseArgument(.outputIpaPath) {
+            guard outputIpaPath.hasSuffix(".ipa") else { return _abort(ResignError.outputIpaPathNotValid) }
+            logger.log(.verbose, "output ipa path: \(outputIpaPath)")
+            outputIpaUrl = URL(fileURLWithPath: outputIpaPath)
+        } else {
+            outputIpaUrl = ipaUrl
+        }
+        
+        if let inputP12 = CLI.parseArgument(.inputP12) {
+            guard inputP12.hasSuffix(".p12") else { return _abort(ResignError.certIsNotInP12Format) }
+            p12Path = inputP12
+            logger.log(.verbose, "Input P12: \(p12Path)")
+            p12Password = CLI.parseArgument(.p12Password) ?? ""
+            logger.log(.verbose, "P12 password: \(p12Password)")
+        }
+        
+        if let prefix = CLI.parseArgument(.machinePrefix) {
+            machinePrefix = prefix
+            logger.log(.verbose, "Machine prefix: \(machinePrefix)")
+        } else {
+            machinePrefix = Utils.defaulMachinePrefix
+        }
+
+        ResignApp(ipaUrl: ipaUrl, outputIpaUrl: outputIpaUrl, p12Path: p12Path, p12Password: p12Password, machinePrefix: machinePrefix, force: f).execute()
+    }
     
     else {
         Utils.showHelp()
