@@ -47,7 +47,7 @@ struct DownloadProvisioningProfiles: ExecutableRecipe {
                                 
                                 switch result {
                                 case .failure(let error):
-                                    logger.log(.error, "Failed to download one profile: \(error)")
+                                    logger.log(.info, "Failed to download one profile: \(error)")
                                 case .success(let profile):
                                     logger.log(.verbose, "Saving mobileprovision...")
                                     logger.log(.verbose, "Expiration date: \(profile.expirationDate)")

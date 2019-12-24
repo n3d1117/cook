@@ -73,7 +73,7 @@ struct CreateCertificate: ExecutableRecipe {
                                         logger.log(.info, "Certificate already exists, revoking...")
                                         return revoke(cert: cert)
                                     } else {
-                                        logger.log(.error, "Certificate already exists! Aborting... (Use -f to force revoke)")
+                                        logger.log(.info, "Certificate already exists! Aborting... (Use -f to force revoke)")
                                         return _abort(CertificateError.certificateAlreadyExists)
                                     }
                                 } else {
@@ -83,10 +83,10 @@ struct CreateCertificate: ExecutableRecipe {
                                         if error.localizedDescription.contains("7460") {
                                             if self.force {
                                                 guard let cert = certs.first(where: { $0.name.contains("iPhone Developer") }) else { return _abort(CertificateError.missingCertificate) }
-                                                logger.log(.error, "Unable to add certificate, revoking \(cert)...")
+                                                logger.log(.info, "Unable to add certificate, revoking \(cert)...")
                                                 return revoke(cert: cert)
                                             } else {
-                                                logger.log(.error, "Error: You already have a current iOS Development certificate or a pending certificate request. Use -f to force revoke.")
+                                                logger.log(.info, "Error: You already have a current iOS Development certificate or a pending certificate request. Use -f to force revoke.")
                                                 return _abort(CertificateError.certificateAlreadyExists)
                                             }
                                         } else {
@@ -143,12 +143,14 @@ struct CreateCertificate: ExecutableRecipe {
                                             switch result {
                                             case .failure(let error as NSError):
                                                 return handle(error: error)
-                                            case .success(_):
+                                            case .success(let certAdded):
+                                                let privateKey: Data? = certAdded.privateKey
                                                 API.fetchCertificates(team: team, session: session) { result in
                                                     switch result {
                                                     case .failure(let error): return _abort(error)
                                                     case .success(let certs):
                                                         guard let cert = certs.first(where: { $0.machineName?.hasPrefix(self.machinePrefix) ?? false }) else { return _abort(CertificateError.missingCertificate) }
+                                                        cert.privateKey = privateKey
                                                         return save(cert: cert)
                                                     }
                                                 }
