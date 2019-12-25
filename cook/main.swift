@@ -149,6 +149,18 @@ func main() {
 
         ResignApp(ipaUrl: ipaUrl, outputIpaUrl: outputIpaUrl, p12Path: p12Path, p12Password: p12Password, machinePrefix: machinePrefix, force: f).execute()
     }
+     
+    // Install .ipa
+    else if CLI.containsRecipe(.installIpa) {
+        logger.log(.info, "Recipe: install ipa")
+        
+        guard let ipaPath = CLI.parseArgument(.ipaPath) else { return _abort(UsageError.missingIpaPath) }
+        guard ipaPath.hasSuffix(".ipa") else { return _abort(ResignError.ipaPathNotValid) }
+        logger.log(.verbose, "ipa path: \(ipaPath)")
+        let ipaUrl = URL(fileURLWithPath: ipaPath)
+        
+        InstallApp(ipaUrl: ipaUrl).execute()
+    }
     
     else {
         Utils.showHelp()

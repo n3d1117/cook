@@ -69,3 +69,8 @@ enum ResignError: Error {
     case ipaFileNotFound
     case invalidP12
 }
+
+enum InstallError: Error {
+    case noConnectedDevice
+    case failedToInstall
+}

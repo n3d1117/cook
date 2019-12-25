@@ -60,6 +60,7 @@ enum CLI {
         case updateProvisioningProfile = "update_profile"
         case downloadProvisioningProfiles = "download_profiles"
         case resignIpa = "resign"
+        case installIpa = "install"
     }
     
     static func noArgumentsProvided() -> Bool {

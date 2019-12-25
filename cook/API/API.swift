@@ -167,5 +167,18 @@ enum API {
             
         }
     }
+    
+    /* INSTALL APP */
+    
+    static func installApp(at url: URL, udid: String, completion: @escaping((Result<Bool, Error>) -> Void)) {
+        ALTDeviceManager.shared.installApp(at: url, toDeviceWithUDID: udid) { (success, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                logger.log(.verbose, "Install completed with result: \(success)")
+                completion(.success(success))
+            }
+        }
+    }
 
 }
