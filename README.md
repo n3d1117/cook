@@ -69,6 +69,7 @@ NOTE: Your Apple ID is **never** sent to anyone but Apple. Feel free to create a
 	--p12                 Optional path to P12 certificate to use for resigning
 	--p12-password        Optional P12 password
 	--machine-name        Optional machine name to use when adding certificate (defaults to 'cook', ignored if --p12 is specified)
+	-f                    Revoke certificate (if --p12 is not specified) if needed, register app id if needed
 	```
 
 ### JSON Mode
