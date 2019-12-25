@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810F5DA723B3D9A100D0EE44 /* Yoda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810F5DA623B3D9A100D0EE44 /* Yoda.swift */; };
 		812FC52C23B3C94A0018D1BF /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 812FC52523B3C93F0018D1BF /* libimobiledevice.a */; };
 		812FC53C23B3CA000018D1BF /* ALTDeviceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 812FC53823B3CA000018D1BF /* ALTDeviceManager.mm */; };
 		812FC53D23B3CA010018D1BF /* NSError+ALTServerError.m in Sources */ = {isa = PBXBuildFile; fileRef = 812FC53923B3CA000018D1BF /* NSError+ALTServerError.m */; };
@@ -833,6 +834,7 @@
 				81B7AF2E239B1661008D8D51 /* DownloadProvisioningProfiles.swift in Sources */,
 				81FACCDF239948BF00C15308 /* API.swift in Sources */,
 				81BB91EF2396DB9300EED6B7 /* main.swift in Sources */,
+				810F5DA723B3D9A100D0EE44 /* Yoda.swift in Sources */,
 				81FACCE4239948BF00C15308 /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

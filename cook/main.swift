@@ -13,7 +13,7 @@ let outputAsJSON = CLI.outputAsJson()
 let auth = Authenticator(appleId: CLI.parseArgument(.appleId) ?? "", password: CLI.parseArgument(.password) ?? "")
 
 func _abort(_ error: Error) {
-    logger.log(.error, "\(error)\n")
+    logger.log(.error, "\(error)")
     if outputAsJSON { logger.json(from: Utils.dictionaryForFailedResult(with: error)) }
     exit(EXIT_FAILURE)
 }
@@ -160,6 +160,18 @@ func main() {
         let ipaUrl = URL(fileURLWithPath: ipaPath)
         
         InstallApp(ipaUrl: ipaUrl).execute()
+    }
+        
+    // Yoda!
+    else if CLI.containsRecipe(.yoda) {
+        logger.log(.info, "Recipe: yoda")
+        
+        guard let ipaPath = CLI.parseArgument(.ipaPath) else { return _abort(UsageError.missingIpaPath) }
+        guard ipaPath.hasSuffix(".ipa") else { return _abort(ResignError.ipaPathNotValid) }
+        logger.log(.verbose, "ipa path: \(ipaPath)")
+        let ipaUrl = URL(fileURLWithPath: ipaPath)
+        
+        Yoda(ipaUrl: ipaUrl).execute()
     }
     
     else {
