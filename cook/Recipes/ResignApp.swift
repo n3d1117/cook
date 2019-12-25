@@ -125,8 +125,8 @@ struct ResignApp: ExecutableRecipe {
         if !self.p12Path.isEmpty {
             logger.log(.info, "Using local p12 certificate...")
             let certUrl = URL(fileURLWithPath: p12Path)
-            guard let encodedCertData = try? Data(contentsOf: certUrl) else { return _abort(ResignError.invalidP12) }
-            guard let cert = ALTCertificate(p12Data: encodedCertData, password: self.p12Password) else { return _abort(ResignError.invalidP12) }
+            guard let encodedCertData = try? Data(contentsOf: certUrl) else { return self.abort(ResignError.invalidP12) }
+            guard let cert = ALTCertificate(p12Data: encodedCertData, password: self.p12Password) else { return self.abort(ResignError.invalidP12) }
             completionHandler(.success(cert))
         } else {
             logger.log(.info, "Fetching certificates...")
