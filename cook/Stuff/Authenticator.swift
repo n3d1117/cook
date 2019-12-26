@@ -50,6 +50,13 @@ class Authenticator {
             guard let archivedData = userInfo["anisetteData"] as? Data else { return abort(.missingAnisetteData) }
             guard let anisetteData = try NSKeyedUnarchiver.unarchivedObject(ofClass: ALTAnisetteData.self, from: archivedData) else { return abort(.malformedAnisetteData) }
             
+            if let range = anisetteData.deviceDescription.lowercased().range(of: "(com.apple.mail") {
+                var adjustedDescription = anisetteData.deviceDescription[..<range.lowerBound]
+                adjustedDescription += "(com.apple.dt.Xcode/3594.4.19)>"
+                
+                anisetteData.deviceDescription = String(adjustedDescription)
+            }
+            
             logger.log(.info, "Logging in...")
             ALTAppleAPI.shared.authenticate(appleID: self.appleId, password: self.password, anisetteData: anisetteData, verificationHandler: nil, completionHandler: { [weak self] (account, session, error) in
                 self?.completionHandler?(account, session, error)
