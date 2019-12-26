@@ -170,13 +170,23 @@ enum API {
     
     /* INSTALL APP */
     
-    static func installApp(at url: URL, udid: String, completion: @escaping((Result<Bool, Error>) -> Void)) {
-        ALTDeviceManager.shared.installApp(at: url, toDeviceWithUDID: udid) { (success, error) in
-            if let error = error {
-                completion(.failure(error))
+    static func installApp(at url: URL, udid: String, useIdeviceinstaller: Bool = false, completion: @escaping((Result<Bool, Error>) -> Void)) {
+        if useIdeviceinstaller {
+            let urlString = url.absoluteString.replacingOccurrences(of: "file://", with: "")
+            let result = Utils.shell("ideviceinstaller", "-n", "-i", urlString)
+            if result == 0 {
+                completion(.success((true)))
             } else {
-                logger.log(.verbose, "Install completed with result: \(success)")
-                completion(.success(success))
+                completion(.failure(InstallError.failedToInstall))
+            }
+        } else {
+            ALTDeviceManager.shared.installApp(at: url, toDeviceWithUDID: udid) { (success, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    logger.log(.verbose, "Install completed with result: \(success)")
+                    completion(.success(success))
+                }
             }
         }
     }

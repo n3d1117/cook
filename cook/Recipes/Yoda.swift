@@ -10,7 +10,7 @@ struct Yoda: ExecutableRecipe {
     
     var ipaUrl: URL
     
-    var workingDirectory: URL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    var workingDirectory: URL = FileManager.default.temporaryDirectory.appendingPathComponent("cook_" + UUID().uuidString)
     
     init(ipaUrl: URL) {
         self.ipaUrl = ipaUrl
@@ -54,7 +54,7 @@ struct Yoda: ExecutableRecipe {
                         self.register(device: device, team: team, session: session) { result in
                             switch result {
                             case .failure(let error): return self.abort(error)
-                            case .success(let device):
+                            case .success(_):
                                 
                                 logger.log(.info, "Fetching certificate...")
                                 self.fetchCertificate(team: team, session: session) { result in

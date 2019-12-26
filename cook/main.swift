@@ -155,7 +155,7 @@ func main() {
         logger.log(.info, "Recipe: install ipa")
         
         guard let ipaPath = CLI.parseArgument(.ipaPath) else { return _abort(UsageError.missingIpaPath) }
-        guard ipaPath.hasSuffix(".ipa") else { return _abort(ResignError.ipaPathNotValid) }
+        guard ipaPath.hasSuffix(".ipa") || ipaPath.hasSuffix(".app") else { return _abort(ResignError.ipaPathNotValid) }
         logger.log(.verbose, "ipa path: \(ipaPath)")
         let ipaUrl = URL(fileURLWithPath: ipaPath)
         
