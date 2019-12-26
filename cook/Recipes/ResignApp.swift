@@ -59,43 +59,51 @@ struct ResignApp: ExecutableRecipe {
                                 logger.log(.verbose, "Fetched certificate: \(cert)")
                                 
                                 logger.log(.info, "Fetching app ids...")
-                                self.fetchAppId(team: team, session: session, appName: app.name, bundleId: app.bundleIdentifier) { result in
+                                self.fetchAppId(team: team, session: session, appName: app.name, identifier: app.bundleIdentifier) { result in
                                     switch result {
                                     case .failure(let error): return self.abort(error)
                                     case .success(let appId):
                                         
-                                        logger.log(.info, "Fetching provisioning profile...")
-                                        API.fetchProvisioningProfile(for: appId, team: team, session: session) { result in
+                                        logger.log(.info, "Updating features...")
+                                        self.updateFeatures(for: appId, app: app, team: team, session: session) { result in
                                             switch result {
                                             case .failure(let error): return self.abort(error)
-                                            case .success(let profile):
-                                                logger.log(.verbose, "Got profile: \(profile)...")
+                                            case .success(let appId):
                                                 
-                                                logger.log(.info, "Resigning...")
-                                                API.resignApp(app: app, team: team, certificate: cert, profile: profile) { result in
+                                                logger.log(.info, "Fetching provisioning profile...")
+                                                API.fetchProvisioningProfile(for: appId, team: team, session: session) { result in
                                                     switch result {
                                                     case .failure(let error): return self.abort(error)
-                                                    case .success(let success):
-                                                        if success {
-                                                            logger.log(.info, "App resigned successfully, repackaging...")
-                                                            
-                                                            let resignedIpaUrl = try! FileManager.default.zipAppBundle(at: appBundleURL)
-                                                
-                                                            if FileManager.default.fileExists(atPath: self.outputIpaUrl.path) {
-                                                                try! FileManager.default.removeItem(at: self.outputIpaUrl)
+                                                    case .success(let profile):
+                                                        logger.log(.verbose, "Got profile: \(profile)...")
+                                                        
+                                                        logger.log(.info, "Resigning...")
+                                                        self.resign(app: app, team: team, cert: cert, profile: profile) { result in
+                                                            switch result {
+                                                            case .failure(let error): return self.abort(error)
+                                                            case .success(let success):
+                                                                if success {
+                                                                    logger.log(.info, "App resigned successfully, repackaging...")
+                                                                    
+                                                                    let resignedIpaUrl = try! FileManager.default.zipAppBundle(at: appBundleURL)
+                                                        
+                                                                    if FileManager.default.fileExists(atPath: self.outputIpaUrl.path) {
+                                                                        try! FileManager.default.removeItem(at: self.outputIpaUrl)
+                                                                    }
+                                                                    try! FileManager.default.moveItem(at: resignedIpaUrl, to: self.outputIpaUrl)
+                                                                    
+                                                                    logger.log(.success, "Done! Resigned .ipa is at \(self.outputIpaUrl.path)")
+                                                                    
+                                                                    self.cleanWorkingDir()
+                                                                    return _success()
+                                                                } else {
+                                                                    return self.abort(ResignError.failedToResign)
+                                                                }
                                                             }
-                                                            try! FileManager.default.moveItem(at: resignedIpaUrl, to: self.outputIpaUrl)
-                                                            
-                                                            logger.log(.success, "Done! Resigned .ipa is at \(self.outputIpaUrl.path)")
-                                                            
-                                                            self.cleanWorkingDir()
-                                                            return _success()
-                                                        } else {
-                                                            return self.abort(ResignError.failedToResign)
                                                         }
+                                                        
                                                     }
                                                 }
-                                                
                                             }
                                         }
                                     }
@@ -179,7 +187,8 @@ struct ResignApp: ExecutableRecipe {
         }
     }
     
-    fileprivate func fetchAppId(team: ALTTeam, session: ALTAppleAPISession, appName: String, bundleId: String, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void) {
+    fileprivate func fetchAppId(team: ALTTeam, session: ALTAppleAPISession, appName: String, identifier: String, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void) {
+        let bundleId = "com.\(team.identifier).\(identifier)"
         API.fetchAppIds(team: team, session: session) { result in
             switch result {
             case .failure(let error): completionHandler(.failure(error))
@@ -203,6 +212,51 @@ struct ResignApp: ExecutableRecipe {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    fileprivate func updateFeatures(for appId: ALTAppID, app: ALTApplication, team: ALTTeam, session: ALTAppleAPISession, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void) {
+        
+        let requiredFeatures = app.entitlements.compactMap { (entitlement, value) -> (ALTFeature, Any)? in
+            guard let feature = ALTFeature(entitlement: entitlement) else { return nil }
+            return (feature, value)
+        }
+        
+        var features = requiredFeatures.reduce(into: [ALTFeature: Any]()) { $0[$1.0] = $1.1 }
+        
+        if let applicationGroups = app.entitlements[.appGroups] as? [String], !applicationGroups.isEmpty {
+            features[.appGroups] = true
+        }
+        
+        let appId = appId.copy() as! ALTAppID
+        appId.features = features
+        
+        API.updateAppId(appId: appId, team: team, session: session) { result in
+            switch result {
+            case .failure(let error): completionHandler(.failure(error))
+            case .success(let appId): completionHandler(.success(appId))
+            }
+        }
+    }
+    
+    fileprivate func resign(app: ALTApplication, team: ALTTeam, cert: ALTCertificate, profile: ALTProvisioningProfile, completionHandler: @escaping (Result<Bool, Error>) -> Void) {
+        
+        let infoPlistURL = app.fileURL.appendingPathComponent("Info.plist")
+        guard var infoDictionary = NSDictionary(contentsOf: infoPlistURL) as? [String: Any] else { completionHandler(.failure(ALTError(.missingInfoPlist)))
+            return
+        }
+        infoDictionary[kCFBundleIdentifierKey as String] = profile.bundleIdentifier
+        do {
+            try (infoDictionary as NSDictionary).write(to: infoPlistURL)
+        } catch let error {
+            completionHandler(.failure(error))
+        }
+        
+        API.resignApp(app: app, team: team, certificate: cert, profile: profile) { result in
+            switch result {
+            case .failure(let error): completionHandler(.failure(error))
+            case .success(let success): completionHandler(.success(success))
             }
         }
     }

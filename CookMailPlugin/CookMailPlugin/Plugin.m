@@ -12,7 +12,29 @@
 #import "Plugin.h"
 #import "ALTAnisetteData.h"
 
+@interface Plugin ()
+@property (nonatomic, readonly) NSISO8601DateFormatter *dateFormatter;
+@end
+
 @implementation Plugin
+
++ (instancetype)sharedInstance {
+    static Plugin *_service = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _service = [[self alloc] init];
+    });
+    
+    return _service;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _dateFormatter = [[NSISO8601DateFormatter alloc] init];
+    }
+    return self;
+}
 
 +(void)initialize {
 
@@ -28,16 +50,10 @@
 -(NSString*)fetchAnisetteDataNotification { return @"it.ned.FetchAnisetteData"; }
 -(NSString*)receivedAnisetteDataNotification { return @"it.ned.ReceivedAnisetteData"; }
 
-NSDateFormatter *formatter;
-
 -(void)start {
     NSLog(@"[CookMailPlugin] started...");
-    
-    formatter = [NSDateFormatter new];
-    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    formatter.calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+    dlopen("/System/Library/PrivateFrameworks/AuthKit.framework/AuthKit", RTLD_NOW);
     
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(received:) name:[self fetchAnisetteDataNotification] object:nil];
     NSLog(@"[CookMailPlugin] listening for %@ notifications...", [self fetchAnisetteDataNotification]);
@@ -73,12 +89,8 @@ NSDateFormatter *formatter;
 }
 
 -(ALTAnisetteData*)getAnisetteData {
-    dlopen("/System/Library/PrivateFrameworks/AuthKit.framework/AuthKit", RTLD_NOW);
 
     Class AKAppleIDSession = NSClassFromString(@"AKAppleIDSession");
-    
-    //NSString* requestUrl = @"https://developerservices2.apple.com/services/QH65B2/listTeams.action?clientId=XXXXXXXXXX";
-    //NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[[NSURL alloc]initWithString: requestUrl]];
     NSDictionary* headers = [[[AKAppleIDSession alloc] initWithIdentifier:@"com.apple.gs.xcode.auth"] appleIDHeadersForRequest: nil];
     
     NSString* machineId = headers[@"X-Apple-I-MD-M"];
@@ -90,9 +102,8 @@ NSDateFormatter *formatter;
     
     NSString* deviceUniqueIdentifier = device.uniqueDeviceIdentifier;
     NSString* deviceSerialNumber = device.serialNumber;
-    //NSString* deviceDescription = device.serverFriendlyDescription;
-    NSString* deviceDescription = @"<MacBookPro11,5> <Mac OS X;10.14.6;18G103> <com.apple.AuthKit/1 (com.apple.akd/1.0)>";
-    NSDate* date = [formatter dateFromString: headers[@"X-Apple-I-Client-Time"]];
+    NSString* deviceDescription = device.serverFriendlyDescription;
+    NSDate* date = [self.dateFormatter dateFromString: headers[@"X-Apple-I-Client-Time"]];
     
     return [[ALTAnisetteData alloc] initWithMachineID:machineId oneTimePassword:oneTimePassword localUserID:localUserId routingInfo:routingInfo deviceUniqueIdentifier:deviceUniqueIdentifier deviceSerialNumber:deviceSerialNumber deviceDescription:deviceDescription date:date locale:NSLocale.currentLocale timeZone:NSTimeZone.localTimeZone];
 }
