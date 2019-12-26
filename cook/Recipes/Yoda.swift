@@ -63,7 +63,7 @@ struct Yoda: ExecutableRecipe {
                                     case .success(let certificate):
                                         
                                         logger.log(.info, "Fetching app identifier...")
-                                        self.fetchAppId(team: team, session: session, appName: app.name, bundleId: app.bundleIdentifier) { result in
+                                        self.fetchAppId(team: team, session: session, appName: app.name, identifier: app.bundleIdentifier) { result in
                                             switch result {
                                             case .failure(let error): return self.abort(error)
                                             case .success(let appId):
@@ -177,7 +177,7 @@ struct Yoda: ExecutableRecipe {
                                 switch result {
                                 case .failure(let error): return self.abort(error)
                                 case .success(let certs):
-                                    guard let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.defaulMachinePrefix) ?? false }) else { return self.abort(CertificateError.missingCertificate) }
+                                    guard let cert = certs.first(where: { $0.machineName?.hasPrefix(Utils.defaulMachinePrefix) ?? false && $0.serialNumber == certAdded.serialNumber }) else { return self.abort(CertificateError.missingCertificate) }
                                     cert.privateKey = privateKey
                                     completionHandler(.success(cert))
                                 }
@@ -189,13 +189,14 @@ struct Yoda: ExecutableRecipe {
         }
     }
     
-    fileprivate func fetchAppId(team: ALTTeam, session: ALTAppleAPISession, appName: String, bundleId: String, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void) {
+    fileprivate func fetchAppId(team: ALTTeam, session: ALTAppleAPISession, appName: String, identifier: String, completionHandler: @escaping (Result<ALTAppID, Error>) -> Void) {
+        let bundleId = "com.\(team.identifier).\(identifier)"
         API.fetchAppIds(team: team, session: session) { result in
             switch result {
             case .failure(let error): completionHandler(.failure(error))
             case .success(let appIds):
                 if let appId = appIds.first(where: { $0.bundleIdentifier == bundleId }) {
-                    logger.log(.verbose, "App id with bundle identifier '\(appId.bundleIdentifier)' exists!")
+                    logger.log(.verbose, "App id with bundle identifier '\(bundleId)' exists!")
                     completionHandler(.success(appId))
                 } else {
                     logger.log(.verbose, "App id with bundle identifier '\(bundleId)' doesn't exist, adding...")

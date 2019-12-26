@@ -279,13 +279,23 @@ NSErrorDomain const ALTDeviceErrorDomain = @"com.rileytestut.ALTDeviceError";
                 return finish(error);
             }
 
-            plist_t profiles = NULL;
+            plist_t rawProfiles = NULL;
             
-            if (misagent_copy_all(mis, &profiles) != MISAGENT_E_SUCCESS)
+            if (misagent_copy_all(mis, &rawProfiles) != MISAGENT_E_SUCCESS)
             {
                 return finish([NSError errorWithDomain:AltServerErrorDomain code:ALTServerErrorConnectionFailed userInfo:nil]);
             }
-
+            
+            // For some reason, libplist now fails to parse `rawProfiles` correctly.
+            // Specifically, it no longer recognizes the nodes in the plist array as "data" nodes.
+            // However, if we encode it as XML then decode it again, it'll work ¯\_(ツ)_/¯
+            char *plistXML = nullptr;
+            uint32_t plistLength = 0;
+            plist_to_xml(rawProfiles, &plistXML, &plistLength);
+            
+            plist_t profiles = NULL;
+            plist_from_xml(plistXML, plistLength, &profiles);
+                
             uint32_t profileCount = plist_array_get_size(profiles);
             for (int i = 0; i < profileCount; i++)
             {
@@ -294,7 +304,7 @@ NSErrorDomain const ALTDeviceErrorDomain = @"com.rileytestut.ALTDeviceError";
                 {
                     continue;
                 }
-                
+
                 char *bytes = NULL;
                 uint64_t length = 0;
 
@@ -307,7 +317,7 @@ NSErrorDomain const ALTDeviceErrorDomain = @"com.rileytestut.ALTDeviceError";
                 NSData *data = [NSData dataWithBytes:(const void *)bytes length:length];
                 ALTProvisioningProfile *provisioningProfile = [[ALTProvisioningProfile alloc] initWithData:data];
 
-                if (![provisioningProfile.teamIdentifier isEqualToString:installationProvisioningProfile.teamIdentifier])
+                if (![provisioningProfile isFreeProvisioningProfile])
                 {
                     //NSLog(@"Ignoring: %@ (Team: %@)", provisioningProfile.bundleIdentifier, provisioningProfile.teamIdentifier);
                     continue;
@@ -338,14 +348,17 @@ NSErrorDomain const ALTDeviceErrorDomain = @"com.rileytestut.ALTDeviceError";
 
                 if (misagent_remove(mis, provisioningProfile.UUID.UUIDString.lowercaseString.UTF8String) == MISAGENT_E_SUCCESS)
                 {
-                    //NSLog(@"Removed provisioning profile: %@", provisioningProfile.UUID);
+                    //NSLog(@"Removed provisioning profile: %@ (Team: %@)", provisioningProfile.bundleIdentifier, provisioningProfile.teamIdentifier);
                 }
                 else
                 {
                     //int code = misagent_get_status_code(mis);
-                    //NSLog(@"Failed to remove provisioning profile %@. Error Code: %@", provisioningProfile.UUID, @(code));
+                    //NSLog(@"Failed to remove provisioning profile %@ (Team: %@). Error Code: %@", provisioningProfile.bundleIdentifier, provisioningProfile.teamIdentifier, @(code));
                 }
             }
+            
+            plist_free(rawProfiles);
+            plist_free(profiles);
 
             lockdownd_client_free(client);
             client = NULL;
@@ -517,7 +530,7 @@ NSErrorDomain const ALTDeviceErrorDomain = @"com.rileytestut.ALTDeviceError";
 #pragma mark - Getters -
 
 - (NSArray<ALTDevice *> *)connectedDevices
-{    
+{
     return [self availableDevicesIncludingNetworkDevices:NO];
 }
 
