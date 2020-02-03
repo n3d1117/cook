@@ -161,9 +161,9 @@ Run the following commands:
 
 ```bash
 $ cd ~/downloads/cook/
-$ mkdir -p /Library/Mail/Bundles
-$ cp -r CookMailPlugin.mailbundle /Library/Mail/Bundles
-$ defaults write "/Library/Preferences/com.apple.mail" EnableBundles 1
+$ [sudo] mkdir -p /Library/Mail/Bundles
+$ [sudo] cp -r CookMailPlugin.mailbundle /Library/Mail/Bundles
+$ [sudo] defaults write "/Library/Preferences/com.apple.mail" EnableBundles 1
 ```
 Then enable the plugin:
 
