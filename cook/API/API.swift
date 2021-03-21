@@ -120,7 +120,7 @@ enum API {
     /* DEVICES */
     
     static func fetchDevices(team: ALTTeam, session: ALTAppleAPISession, completion: @escaping((Result<[ALTDevice], Error>) -> Void)) {
-        ALTAppleAPI.shared.fetchDevices(for: team, session: session) { (devices, error) in
+        ALTAppleAPI.shared.fetchDevices(for: team, types: .all, session: session) { (devices, error) in
             if let devices = devices {
                 logger.log(.verbose, "Got \(devices.count) devices: \(devices)")
                 completion(.success(devices))
@@ -131,7 +131,7 @@ enum API {
     }
     
     static func registerDevice(name: String, udid: String, team: ALTTeam, session: ALTAppleAPISession, completion: @escaping((Result<ALTDevice, Error>) -> Void)) {
-        ALTAppleAPI.shared.registerDevice(name: name, identifier: udid, team: team, session: session) { (device, error) in
+        ALTAppleAPI.shared.registerDevice(name: name, identifier: udid, type: .all, team: team, session: session) { (device, error) in
             if let device = device {
                 logger.log(.verbose, "Registered device \(device)")
                 completion(.success(device))
@@ -144,7 +144,7 @@ enum API {
     /* PROVISIONING PROFILES */
     
     static func fetchProvisioningProfile(for appId: ALTAppID, team: ALTTeam, session: ALTAppleAPISession, completion: @escaping((Result<ALTProvisioningProfile, Error>) -> Void)) {
-        ALTAppleAPI.shared.fetchProvisioningProfile(for: appId, team: team, session: session) { (profile, error) in
+        ALTAppleAPI.shared.fetchProvisioningProfile(for: appId, deviceType: .all, team: team, session: session) { (profile, error) in
             if let profile = profile {
                 logger.log(.verbose, "Got profile \(profile)")
                 completion(.success(profile))

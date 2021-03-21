@@ -3,82 +3,54 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		816EA9DB2399A5C6000E2D87 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816EA9DA2399A5C6000E2D87 /* Logger.swift */; };
-		816EA9DD2399BB1A000E2D87 /* RegisterBundleId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816EA9DC2399BB1A000E2D87 /* RegisterBundleId.swift */; };
-		81B7AF2A239ABC1E008D8D51 /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7AF29239ABC1E008D8D51 /* RegisterDevice.swift */; };
-		81B7AF2C239AE8DF008D8D51 /* UpdateProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7AF2B239AE8DF008D8D51 /* UpdateProvisioningProfile.swift */; };
-		81B7AF2E239B1661008D8D51 /* DownloadProvisioningProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7AF2D239B1661008D8D51 /* DownloadProvisioningProfiles.swift */; };
-		81BB91EF2396DB9300EED6B7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB91EE2396DB9300EED6B7 /* main.swift */; };
-		81C0A0AB23A1953D005B3D68 /* AltSign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0A0A623A19519005B3D68 /* AltSign.framework */; };
-		81C0A0AC23A1953D005B3D68 /* AltSign.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81C0A0A623A19519005B3D68 /* AltSign.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		81D2959B23B14C03005B8444 /* ResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2959A23B14C03005B8444 /* ResignApp.swift */; };
-		81FACCDF239948BF00C15308 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCD4239948BF00C15308 /* API.swift */; };
-		81FACCE0239948BF00C15308 /* CreateCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCD9239948BF00C15308 /* CreateCertificate.swift */; };
-		81FACCE1239948BF00C15308 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCDB239948BF00C15308 /* Authenticator.swift */; };
-		81FACCE2239948BF00C15308 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCDC239948BF00C15308 /* Utils.swift */; };
-		81FACCE3239948BF00C15308 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCDD239948BF00C15308 /* CLI.swift */; };
-		81FACCE4239948BF00C15308 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FACCDE239948BF00C15308 /* Errors.swift */; };
+		816149052607D33A006B5D2B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816149002607D2DD006B5D2B /* libcrypto.a */; };
+		816149062607D33C006B5D2B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816149022607D2E0006B5D2B /* libssl.a */; };
+		81A2E8982607EE8800476DC6 /* AltSign-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 81A2E8972607EE8800476DC6 /* AltSign-Static */; };
+		81B6DE7C2607F961005C8940 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE6D2607F961005C8940 /* Logger.swift */; };
+		81B6DE7D2607F961005C8940 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE6E2607F961005C8940 /* Authenticator.swift */; };
+		81B6DE7E2607F961005C8940 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE6F2607F961005C8940 /* Utils.swift */; };
+		81B6DE7F2607F961005C8940 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE702607F961005C8940 /* CLI.swift */; };
+		81B6DE802607F961005C8940 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE712607F961005C8940 /* Errors.swift */; };
+		81B6DE812607F961005C8940 /* UpdateProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE732607F961005C8940 /* UpdateProvisioningProfile.swift */; };
+		81B6DE822607F961005C8940 /* ResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE742607F961005C8940 /* ResignApp.swift */; };
+		81B6DE832607F961005C8940 /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE752607F961005C8940 /* RegisterDevice.swift */; };
+		81B6DE842607F961005C8940 /* CreateCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE762607F961005C8940 /* CreateCertificate.swift */; };
+		81B6DE852607F961005C8940 /* RegisterBundleId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE772607F961005C8940 /* RegisterBundleId.swift */; };
+		81B6DE862607F961005C8940 /* DownloadProvisioningProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE782607F961005C8940 /* DownloadProvisioningProfiles.swift */; };
+		81B6DE872607F961005C8940 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE792607F961005C8940 /* main.swift */; };
+		81B6DE882607F961005C8940 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE7B2607F961005C8940 /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		81B7AF18239A8826008D8D51 /* PBXContainerItemProxy */ = {
+		818C728A2607FAA1006F5E9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 81B7AF12239A8826008D8D51 /* CookMailPlugin.xcodeproj */;
+			containerPortal = 818C72862607FAA1006F5E9C /* CookMailPlugin.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 619F2CB61D8BDEF400BC8A84;
 			remoteInfo = CookMailPlugin;
 		};
-		81C0A0A123A19519005B3D68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BF5AB3992285FDB200DC914B;
-			remoteInfo = AltSign;
-		};
-		81C0A0A323A19519005B3D68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BFBAC8AA2295ED1900587369;
-			remoteInfo = ldid;
-		};
-		81C0A0A523A19519005B3D68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BF9B639E229DCF3A002F0A62;
-			remoteInfo = "AltSign-macOS";
-		};
-		81C0A0AD23A1954B005B3D68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BF9B6378229DCF3A002F0A62;
-			remoteInfo = "AltSign-macOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		81BB91E92396DB9300EED6B7 /* CopyFiles */ = {
+		8135042A26077CBE009F9964 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
-		81BB92062396E5A000EED6B7 /* Embed Frameworks */ = {
+		81FF3F152607A7F100E321AC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				81C0A0AC23A1953D005B3D68 /* AltSign.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,156 +58,364 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		816EA9DA2399A5C6000E2D87 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		816EA9DC2399BB1A000E2D87 /* RegisterBundleId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBundleId.swift; sourceTree = "<group>"; };
-		81B7AF12239A8826008D8D51 /* CookMailPlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CookMailPlugin.xcodeproj; path = CookMailPlugin/CookMailPlugin.xcodeproj; sourceTree = "<group>"; };
-		81B7AF29239ABC1E008D8D51 /* RegisterDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDevice.swift; sourceTree = "<group>"; };
-		81B7AF2B239AE8DF008D8D51 /* UpdateProvisioningProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProvisioningProfile.swift; sourceTree = "<group>"; };
-		81B7AF2D239B1661008D8D51 /* DownloadProvisioningProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProvisioningProfiles.swift; sourceTree = "<group>"; };
-		81BB91EB2396DB9300EED6B7 /* cook */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cook; sourceTree = BUILT_PRODUCTS_DIR; };
-		81BB91EE2396DB9300EED6B7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		81BB92092396E63900EED6B7 /* cook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cook.entitlements; sourceTree = "<group>"; };
-		81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AltSign.xcodeproj; path = AltSign/AltSign.xcodeproj; sourceTree = "<group>"; };
-		81D2959A23B14C03005B8444 /* ResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignApp.swift; sourceTree = "<group>"; };
-		81FACCD4239948BF00C15308 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = ../API/API.swift; sourceTree = "<group>"; };
-		81FACCD9239948BF00C15308 /* CreateCertificate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCertificate.swift; sourceTree = "<group>"; };
-		81FACCDB239948BF00C15308 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
-		81FACCDC239948BF00C15308 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		81FACCDD239948BF00C15308 /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
-		81FACCDE239948BF00C15308 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		8135042C26077CBE009F9964 /* cook */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cook; sourceTree = BUILT_PRODUCTS_DIR; };
+		816149002607D2DD006B5D2B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/OpenSSL/macos/lib/libcrypto.a; sourceTree = "<group>"; };
+		816149022607D2E0006B5D2B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Dependencies/OpenSSL/macos/lib/libssl.a; sourceTree = "<group>"; };
+		818C72862607FAA1006F5E9C /* CookMailPlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CookMailPlugin.xcodeproj; path = CookMailPlugin/CookMailPlugin.xcodeproj; sourceTree = "<group>"; };
+		81A2E89D2607EEE500476DC6 /* pem2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
+		81A2E89E2607EEE500476DC6 /* pem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
+		81A2E89F2607EEE500476DC6 /* ssl3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssl3.h; sourceTree = "<group>"; };
+		81A2E8A02607EEE500476DC6 /* ossl_typ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ossl_typ.h; sourceTree = "<group>"; };
+		81A2E8A12607EEE500476DC6 /* dtls1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtls1.h; sourceTree = "<group>"; };
+		81A2E8A22607EEE500476DC6 /* err.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		81A2E8A32607EEE500476DC6 /* bn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
+		81A2E8A42607EEE500476DC6 /* blowfish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
+		81A2E8A52607EEE500476DC6 /* cms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cms.h; sourceTree = "<group>"; };
+		81A2E8A62607EEE500476DC6 /* engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
+		81A2E8A72607EEE500476DC6 /* conf_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conf_api.h; sourceTree = "<group>"; };
+		81A2E8A82607EEE500476DC6 /* x509.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
+		81A2E8A92607EEE500476DC6 /* asn1_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
+		81A2E8AA2607EEE500476DC6 /* ui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
+		81A2E8AB2607EEE500476DC6 /* kssl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kssl.h; sourceTree = "<group>"; };
+		81A2E8AC2607EEE500476DC6 /* sha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		81A2E8AD2607EEE500476DC6 /* symhacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
+		81A2E8AE2607EEE500476DC6 /* asn1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
+		81A2E8AF2607EEE500476DC6 /* opensslconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = opensslconf.h; sourceTree = "<group>"; };
+		81A2E8B02607EEE500476DC6 /* bio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bio.h; sourceTree = "<group>"; };
+		81A2E8B12607EEE500476DC6 /* rc2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rc2.h; sourceTree = "<group>"; };
+		81A2E8B22607EEE500476DC6 /* dh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
+		81A2E8B32607EEE500476DC6 /* ui_compat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_compat.h; sourceTree = "<group>"; };
+		81A2E8B42607EEE500476DC6 /* x509v3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		81A2E8B52607EEE500476DC6 /* ssl23.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssl23.h; sourceTree = "<group>"; };
+		81A2E8B62607EEE500476DC6 /* conf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		81A2E8B72607EEE500476DC6 /* opensslconf-x86_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opensslconf-x86_64.h"; sourceTree = "<group>"; };
+		81A2E8B82607EEE500476DC6 /* md5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		81A2E8B92607EEE500476DC6 /* x509_vfy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
+		81A2E8BA2607EEE500476DC6 /* txt_db.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = txt_db.h; sourceTree = "<group>"; };
+		81A2E8BB2607EEE500476DC6 /* safestack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safestack.h; sourceTree = "<group>"; };
+		81A2E8BC2607EEE500476DC6 /* opensslconf-arm64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opensslconf-arm64.h"; sourceTree = "<group>"; };
+		81A2E8BD2607EEE500476DC6 /* ecdsa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ecdsa.h; sourceTree = "<group>"; };
+		81A2E8BE2607EEE500476DC6 /* objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
+		81A2E8BF2607EEE500476DC6 /* pkcs12.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pkcs12.h; sourceTree = "<group>"; };
+		81A2E8C02607EEE500476DC6 /* crypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		81A2E8C12607EEE500476DC6 /* opensslv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = opensslv.h; sourceTree = "<group>"; };
+		81A2E8C22607EEE500476DC6 /* pkcs7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pkcs7.h; sourceTree = "<group>"; };
+		81A2E8C32607EEE500476DC6 /* obj_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = obj_mac.h; sourceTree = "<group>"; };
+		81A2E8C42607EEE500476DC6 /* buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		81A2E8C52607EEE500476DC6 /* ssl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssl.h; sourceTree = "<group>"; };
+		81A2E8C62607EEE500476DC6 /* srp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
+		81A2E8C72607EEE500476DC6 /* camellia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camellia.h; sourceTree = "<group>"; };
+		81A2E8C82607EEE500476DC6 /* evp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = evp.h; sourceTree = "<group>"; };
+		81A2E8C92607EEE500476DC6 /* e_os2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
+		81A2E8CA2607EEE500476DC6 /* md4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		81A2E8CB2607EEE500476DC6 /* hmac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		81A2E8CC2607EEE500476DC6 /* aes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		81A2E8CD2607EEE500476DC6 /* comp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
+		81A2E8CE2607EEE500476DC6 /* cast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cast.h; sourceTree = "<group>"; };
+		81A2E8CF2607EEE500476DC6 /* rc4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rc4.h; sourceTree = "<group>"; };
+		81A2E8D02607EEE500476DC6 /* stack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		81A2E8D12607EEE500476DC6 /* des.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
+		81A2E8D22607EEE500476DC6 /* ocsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocsp.h; sourceTree = "<group>"; };
+		81A2E8D32607EEE500476DC6 /* ec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
+		81A2E8D42607EEE500476DC6 /* ecdh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ecdh.h; sourceTree = "<group>"; };
+		81A2E8D52607EEE500476DC6 /* rand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		81A2E8D62607EEE500476DC6 /* ts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
+		81A2E8D72607EEE500476DC6 /* pqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pqueue.h; sourceTree = "<group>"; };
+		81A2E8D82607EEE500476DC6 /* dso.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dso.h; sourceTree = "<group>"; };
+		81A2E8D92607EEE500476DC6 /* seed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
+		81A2E8DA2607EEE500476DC6 /* modes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
+		81A2E8DB2607EEE500476DC6 /* ssl2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssl2.h; sourceTree = "<group>"; };
+		81A2E8DC2607EEE500476DC6 /* rsa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		81A2E8DD2607EEE500476DC6 /* krb5_asn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = krb5_asn.h; sourceTree = "<group>"; };
+		81A2E8DE2607EEE500476DC6 /* des_old.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = des_old.h; sourceTree = "<group>"; };
+		81A2E8DF2607EEE500476DC6 /* ripemd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ripemd.h; sourceTree = "<group>"; };
+		81A2E8E02607EEE500476DC6 /* whrlpool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whrlpool.h; sourceTree = "<group>"; };
+		81A2E8E12607EEE500476DC6 /* tls1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
+		81A2E8E22607EEE500476DC6 /* mdc2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
+		81A2E8E32607EEE500476DC6 /* dsa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
+		81A2E8E42607EEE500476DC6 /* srtp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = srtp.h; sourceTree = "<group>"; };
+		81A2E8E52607EEE500476DC6 /* asn1t.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asn1t.h; sourceTree = "<group>"; };
+		81A2E8E62607EEE500476DC6 /* cmac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cmac.h; sourceTree = "<group>"; };
+		81A2E8E72607EEE500476DC6 /* ebcdic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ebcdic.h; sourceTree = "<group>"; };
+		81A2E8E82607EEE500476DC6 /* idea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
+		81A2E8E92607EEE500476DC6 /* lhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
+		81A2E8EA2607EEE500476DC6 /* shim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shim.h; sourceTree = "<group>"; };
+		81A2E8EC2607EEE500476DC6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		81A2E8ED2607EEE500476DC6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		81A2E9492607EEE500476DC6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		81A2E94B2607EEE500476DC6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		81A2E9532607EEE500476DC6 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		81B6DE6D2607F961005C8940 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		81B6DE6E2607F961005C8940 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		81B6DE6F2607F961005C8940 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		81B6DE702607F961005C8940 /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		81B6DE712607F961005C8940 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		81B6DE732607F961005C8940 /* UpdateProvisioningProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProvisioningProfile.swift; sourceTree = "<group>"; };
+		81B6DE742607F961005C8940 /* ResignApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignApp.swift; sourceTree = "<group>"; };
+		81B6DE752607F961005C8940 /* RegisterDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDevice.swift; sourceTree = "<group>"; };
+		81B6DE762607F961005C8940 /* CreateCertificate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCertificate.swift; sourceTree = "<group>"; };
+		81B6DE772607F961005C8940 /* RegisterBundleId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterBundleId.swift; sourceTree = "<group>"; };
+		81B6DE782607F961005C8940 /* DownloadProvisioningProfiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadProvisioningProfiles.swift; sourceTree = "<group>"; };
+		81B6DE792607F961005C8940 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		81B6DE7B2607F961005C8940 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		81BB91E82396DB9300EED6B7 /* Frameworks */ = {
+		8135042926077CBE009F9964 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C0A0AB23A1953D005B3D68 /* AltSign.framework in Frameworks */,
+				81A2E8982607EE8800476DC6 /* AltSign-Static in Frameworks */,
+				816149052607D33A006B5D2B /* libcrypto.a in Frameworks */,
+				816149062607D33C006B5D2B /* libssl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		81B7AF13239A8826008D8D51 /* Products */ = {
+		8135042326077CBE009F9964 = {
 			isa = PBXGroup;
 			children = (
-				81B7AF19239A8826008D8D51 /* CookMailPlugin.mailbundle */,
+				818C72862607FAA1006F5E9C /* CookMailPlugin.xcodeproj */,
+				8135042E26077CBE009F9964 /* Cook */,
+				81A2E8992607EEE500476DC6 /* OpenSSL */,
+				8135044A26078F13009F9964 /* Frameworks */,
+				8135042D26077CBE009F9964 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8135042D26077CBE009F9964 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8135042C26077CBE009F9964 /* cook */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		81BB91E22396DB9300EED6B7 = {
+		8135042E26077CBE009F9964 /* Cook */ = {
 			isa = PBXGroup;
 			children = (
-				81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */,
-				81B7AF12239A8826008D8D51 /* CookMailPlugin.xcodeproj */,
-				81BB91ED2396DB9300EED6B7 /* cook */,
-				81BB91EC2396DB9300EED6B7 /* Products */,
-				81BB92032396E5A000EED6B7 /* Frameworks */,
+				81B6DE7A2607F961005C8940 /* API */,
+				81B6DE722607F961005C8940 /* Recipes */,
+				81B6DE6C2607F961005C8940 /* Stuff */,
+				81B6DE792607F961005C8940 /* main.swift */,
 			);
+			path = Cook;
 			sourceTree = "<group>";
 		};
-		81BB91EC2396DB9300EED6B7 /* Products */ = {
+		8135044A26078F13009F9964 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81BB91EB2396DB9300EED6B7 /* cook */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		81BB91ED2396DB9300EED6B7 /* cook */ = {
-			isa = PBXGroup;
-			children = (
-				81BB92092396E63900EED6B7 /* cook.entitlements */,
-				81FACCD8239948BF00C15308 /* Recipes */,
-				81FACCDA239948BF00C15308 /* Stuff */,
-				81BB91EE2396DB9300EED6B7 /* main.swift */,
-			);
-			path = cook;
-			sourceTree = "<group>";
-		};
-		81BB92032396E5A000EED6B7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
+				816149002607D2DD006B5D2B /* libcrypto.a */,
+				816149022607D2E0006B5D2B /* libssl.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		81C0A09B23A19519005B3D68 /* Products */ = {
+		818C72872607FAA1006F5E9C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				81C0A0A223A19519005B3D68 /* AltSign.framework */,
-				81C0A0A423A19519005B3D68 /* libldid.a */,
-				81C0A0A623A19519005B3D68 /* AltSign.framework */,
+				818C728B2607FAA1006F5E9C /* CookMailPlugin.mailbundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		81FACCD8239948BF00C15308 /* Recipes */ = {
+		81A2E8992607EEE500476DC6 /* OpenSSL */ = {
 			isa = PBXGroup;
 			children = (
-				81FACCD9239948BF00C15308 /* CreateCertificate.swift */,
-				816EA9DC2399BB1A000E2D87 /* RegisterBundleId.swift */,
-				81B7AF29239ABC1E008D8D51 /* RegisterDevice.swift */,
-				81B7AF2B239AE8DF008D8D51 /* UpdateProvisioningProfile.swift */,
-				81B7AF2D239B1661008D8D51 /* DownloadProvisioningProfiles.swift */,
-				81D2959A23B14C03005B8444 /* ResignApp.swift */,
+				81A2E89A2607EEE500476DC6 /* macos */,
+				81A2E9492607EEE500476DC6 /* README.md */,
+				81A2E94B2607EEE500476DC6 /* .gitignore */,
+				81A2E9532607EEE500476DC6 /* LICENSE.txt */,
+			);
+			path = OpenSSL;
+			sourceTree = "<group>";
+		};
+		81A2E89A2607EEE500476DC6 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				81A2E89B2607EEE500476DC6 /* include */,
+				81A2E8EB2607EEE500476DC6 /* lib */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
+		81A2E89B2607EEE500476DC6 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				81A2E89C2607EEE500476DC6 /* openssl */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		81A2E89C2607EEE500476DC6 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				81A2E89D2607EEE500476DC6 /* pem2.h */,
+				81A2E89E2607EEE500476DC6 /* pem.h */,
+				81A2E89F2607EEE500476DC6 /* ssl3.h */,
+				81A2E8A02607EEE500476DC6 /* ossl_typ.h */,
+				81A2E8A12607EEE500476DC6 /* dtls1.h */,
+				81A2E8A22607EEE500476DC6 /* err.h */,
+				81A2E8A32607EEE500476DC6 /* bn.h */,
+				81A2E8A42607EEE500476DC6 /* blowfish.h */,
+				81A2E8A52607EEE500476DC6 /* cms.h */,
+				81A2E8A62607EEE500476DC6 /* engine.h */,
+				81A2E8A72607EEE500476DC6 /* conf_api.h */,
+				81A2E8A82607EEE500476DC6 /* x509.h */,
+				81A2E8A92607EEE500476DC6 /* asn1_mac.h */,
+				81A2E8AA2607EEE500476DC6 /* ui.h */,
+				81A2E8AB2607EEE500476DC6 /* kssl.h */,
+				81A2E8AC2607EEE500476DC6 /* sha.h */,
+				81A2E8AD2607EEE500476DC6 /* symhacks.h */,
+				81A2E8AE2607EEE500476DC6 /* asn1.h */,
+				81A2E8AF2607EEE500476DC6 /* opensslconf.h */,
+				81A2E8B02607EEE500476DC6 /* bio.h */,
+				81A2E8B12607EEE500476DC6 /* rc2.h */,
+				81A2E8B22607EEE500476DC6 /* dh.h */,
+				81A2E8B32607EEE500476DC6 /* ui_compat.h */,
+				81A2E8B42607EEE500476DC6 /* x509v3.h */,
+				81A2E8B52607EEE500476DC6 /* ssl23.h */,
+				81A2E8B62607EEE500476DC6 /* conf.h */,
+				81A2E8B72607EEE500476DC6 /* opensslconf-x86_64.h */,
+				81A2E8B82607EEE500476DC6 /* md5.h */,
+				81A2E8B92607EEE500476DC6 /* x509_vfy.h */,
+				81A2E8BA2607EEE500476DC6 /* txt_db.h */,
+				81A2E8BB2607EEE500476DC6 /* safestack.h */,
+				81A2E8BC2607EEE500476DC6 /* opensslconf-arm64.h */,
+				81A2E8BD2607EEE500476DC6 /* ecdsa.h */,
+				81A2E8BE2607EEE500476DC6 /* objects.h */,
+				81A2E8BF2607EEE500476DC6 /* pkcs12.h */,
+				81A2E8C02607EEE500476DC6 /* crypto.h */,
+				81A2E8C12607EEE500476DC6 /* opensslv.h */,
+				81A2E8C22607EEE500476DC6 /* pkcs7.h */,
+				81A2E8C32607EEE500476DC6 /* obj_mac.h */,
+				81A2E8C42607EEE500476DC6 /* buffer.h */,
+				81A2E8C52607EEE500476DC6 /* ssl.h */,
+				81A2E8C62607EEE500476DC6 /* srp.h */,
+				81A2E8C72607EEE500476DC6 /* camellia.h */,
+				81A2E8C82607EEE500476DC6 /* evp.h */,
+				81A2E8C92607EEE500476DC6 /* e_os2.h */,
+				81A2E8CA2607EEE500476DC6 /* md4.h */,
+				81A2E8CB2607EEE500476DC6 /* hmac.h */,
+				81A2E8CC2607EEE500476DC6 /* aes.h */,
+				81A2E8CD2607EEE500476DC6 /* comp.h */,
+				81A2E8CE2607EEE500476DC6 /* cast.h */,
+				81A2E8CF2607EEE500476DC6 /* rc4.h */,
+				81A2E8D02607EEE500476DC6 /* stack.h */,
+				81A2E8D12607EEE500476DC6 /* des.h */,
+				81A2E8D22607EEE500476DC6 /* ocsp.h */,
+				81A2E8D32607EEE500476DC6 /* ec.h */,
+				81A2E8D42607EEE500476DC6 /* ecdh.h */,
+				81A2E8D52607EEE500476DC6 /* rand.h */,
+				81A2E8D62607EEE500476DC6 /* ts.h */,
+				81A2E8D72607EEE500476DC6 /* pqueue.h */,
+				81A2E8D82607EEE500476DC6 /* dso.h */,
+				81A2E8D92607EEE500476DC6 /* seed.h */,
+				81A2E8DA2607EEE500476DC6 /* modes.h */,
+				81A2E8DB2607EEE500476DC6 /* ssl2.h */,
+				81A2E8DC2607EEE500476DC6 /* rsa.h */,
+				81A2E8DD2607EEE500476DC6 /* krb5_asn.h */,
+				81A2E8DE2607EEE500476DC6 /* des_old.h */,
+				81A2E8DF2607EEE500476DC6 /* ripemd.h */,
+				81A2E8E02607EEE500476DC6 /* whrlpool.h */,
+				81A2E8E12607EEE500476DC6 /* tls1.h */,
+				81A2E8E22607EEE500476DC6 /* mdc2.h */,
+				81A2E8E32607EEE500476DC6 /* dsa.h */,
+				81A2E8E42607EEE500476DC6 /* srtp.h */,
+				81A2E8E52607EEE500476DC6 /* asn1t.h */,
+				81A2E8E62607EEE500476DC6 /* cmac.h */,
+				81A2E8E72607EEE500476DC6 /* ebcdic.h */,
+				81A2E8E82607EEE500476DC6 /* idea.h */,
+				81A2E8E92607EEE500476DC6 /* lhash.h */,
+				81A2E8EA2607EEE500476DC6 /* shim.h */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+		81A2E8EB2607EEE500476DC6 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				81A2E8EC2607EEE500476DC6 /* libcrypto.a */,
+				81A2E8ED2607EEE500476DC6 /* libssl.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		81B6DE6C2607F961005C8940 /* Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				81B6DE6D2607F961005C8940 /* Logger.swift */,
+				81B6DE6E2607F961005C8940 /* Authenticator.swift */,
+				81B6DE6F2607F961005C8940 /* Utils.swift */,
+				81B6DE702607F961005C8940 /* CLI.swift */,
+				81B6DE712607F961005C8940 /* Errors.swift */,
+			);
+			path = Stuff;
+			sourceTree = "<group>";
+		};
+		81B6DE722607F961005C8940 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				81B6DE732607F961005C8940 /* UpdateProvisioningProfile.swift */,
+				81B6DE742607F961005C8940 /* ResignApp.swift */,
+				81B6DE752607F961005C8940 /* RegisterDevice.swift */,
+				81B6DE762607F961005C8940 /* CreateCertificate.swift */,
+				81B6DE772607F961005C8940 /* RegisterBundleId.swift */,
+				81B6DE782607F961005C8940 /* DownloadProvisioningProfiles.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
 		};
-		81FACCDA239948BF00C15308 /* Stuff */ = {
+		81B6DE7A2607F961005C8940 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				81FACCD4239948BF00C15308 /* API.swift */,
-				81FACCDB239948BF00C15308 /* Authenticator.swift */,
-				81FACCDC239948BF00C15308 /* Utils.swift */,
-				81FACCDD239948BF00C15308 /* CLI.swift */,
-				81FACCDE239948BF00C15308 /* Errors.swift */,
-				816EA9DA2399A5C6000E2D87 /* Logger.swift */,
+				81B6DE7B2607F961005C8940 /* API.swift */,
 			);
-			path = Stuff;
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		81BB91EA2396DB9300EED6B7 /* cook */ = {
+		8135042B26077CBE009F9964 /* cook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 81BB91F22396DB9300EED6B7 /* Build configuration list for PBXNativeTarget "cook" */;
+			buildConfigurationList = 8135043326077CBE009F9964 /* Build configuration list for PBXNativeTarget "cook" */;
 			buildPhases = (
-				81BB91E72396DB9300EED6B7 /* Sources */,
-				81BB91E82396DB9300EED6B7 /* Frameworks */,
-				81BB91E92396DB9300EED6B7 /* CopyFiles */,
-				81BB92062396E5A000EED6B7 /* Embed Frameworks */,
+				8135042826077CBE009F9964 /* Sources */,
+				8135042926077CBE009F9964 /* Frameworks */,
+				8135042A26077CBE009F9964 /* CopyFiles */,
+				81FF3F152607A7F100E321AC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				81C0A0AE23A1954B005B3D68 /* PBXTargetDependency */,
 			);
 			name = cook;
-			productName = "macos-cli";
-			productReference = 81BB91EB2396DB9300EED6B7 /* cook */;
+			packageProductDependencies = (
+				81A2E8972607EE8800476DC6 /* AltSign-Static */,
+			);
+			productName = altsignswiftpackagetest;
+			productReference = 8135042C26077CBE009F9964 /* cook */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		81BB91E32396DB9300EED6B7 /* Project object */ = {
+		8135042426077CBE009F9964 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = ned;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					81BB91EA2396DB9300EED6B7 = {
-						CreatedOnToolsVersion = 11.2.1;
+					8135042B26077CBE009F9964 = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
-			buildConfigurationList = 81BB91E62396DB9300EED6B7 /* Build configuration list for PBXProject "cook" */;
+			buildConfigurationList = 8135042726077CBE009F9964 /* Build configuration list for PBXProject "Cook" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -243,90 +423,60 @@
 				en,
 				Base,
 			);
-			mainGroup = 81BB91E22396DB9300EED6B7;
-			productRefGroup = 81BB91EC2396DB9300EED6B7 /* Products */;
+			mainGroup = 8135042326077CBE009F9964;
+			packageReferences = (
+				81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */,
+			);
+			productRefGroup = 8135042D26077CBE009F9964 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 81C0A09B23A19519005B3D68 /* Products */;
-					ProjectRef = 81C0A09A23A19519005B3D68 /* AltSign.xcodeproj */;
-				},
-				{
-					ProductGroup = 81B7AF13239A8826008D8D51 /* Products */;
-					ProjectRef = 81B7AF12239A8826008D8D51 /* CookMailPlugin.xcodeproj */;
+					ProductGroup = 818C72872607FAA1006F5E9C /* Products */;
+					ProjectRef = 818C72862607FAA1006F5E9C /* CookMailPlugin.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				81BB91EA2396DB9300EED6B7 /* cook */,
+				8135042B26077CBE009F9964 /* cook */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		81B7AF19239A8826008D8D51 /* CookMailPlugin.mailbundle */ = {
+		818C728B2607FAA1006F5E9C /* CookMailPlugin.mailbundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CookMailPlugin.mailbundle;
-			remoteRef = 81B7AF18239A8826008D8D51 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		81C0A0A223A19519005B3D68 /* AltSign.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AltSign.framework;
-			remoteRef = 81C0A0A123A19519005B3D68 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		81C0A0A423A19519005B3D68 /* libldid.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libldid.a;
-			remoteRef = 81C0A0A323A19519005B3D68 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		81C0A0A623A19519005B3D68 /* AltSign.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AltSign.framework;
-			remoteRef = 81C0A0A523A19519005B3D68 /* PBXContainerItemProxy */;
+			remoteRef = 818C728A2607FAA1006F5E9C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		81BB91E72396DB9300EED6B7 /* Sources */ = {
+		8135042826077CBE009F9964 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FACCE2239948BF00C15308 /* Utils.swift in Sources */,
-				81D2959B23B14C03005B8444 /* ResignApp.swift in Sources */,
-				816EA9DD2399BB1A000E2D87 /* RegisterBundleId.swift in Sources */,
-				81FACCE0239948BF00C15308 /* CreateCertificate.swift in Sources */,
-				81FACCE3239948BF00C15308 /* CLI.swift in Sources */,
-				81B7AF2A239ABC1E008D8D51 /* RegisterDevice.swift in Sources */,
-				816EA9DB2399A5C6000E2D87 /* Logger.swift in Sources */,
-				81B7AF2C239AE8DF008D8D51 /* UpdateProvisioningProfile.swift in Sources */,
-				81FACCE1239948BF00C15308 /* Authenticator.swift in Sources */,
-				81B7AF2E239B1661008D8D51 /* DownloadProvisioningProfiles.swift in Sources */,
-				81FACCDF239948BF00C15308 /* API.swift in Sources */,
-				81BB91EF2396DB9300EED6B7 /* main.swift in Sources */,
-				81FACCE4239948BF00C15308 /* Errors.swift in Sources */,
+				81B6DE7F2607F961005C8940 /* CLI.swift in Sources */,
+				81B6DE852607F961005C8940 /* RegisterBundleId.swift in Sources */,
+				81B6DE872607F961005C8940 /* main.swift in Sources */,
+				81B6DE802607F961005C8940 /* Errors.swift in Sources */,
+				81B6DE822607F961005C8940 /* ResignApp.swift in Sources */,
+				81B6DE842607F961005C8940 /* CreateCertificate.swift in Sources */,
+				81B6DE7C2607F961005C8940 /* Logger.swift in Sources */,
+				81B6DE832607F961005C8940 /* RegisterDevice.swift in Sources */,
+				81B6DE882607F961005C8940 /* API.swift in Sources */,
+				81B6DE862607F961005C8940 /* DownloadProvisioningProfiles.swift in Sources */,
+				81B6DE812607F961005C8940 /* UpdateProvisioningProfile.swift in Sources */,
+				81B6DE7D2607F961005C8940 /* Authenticator.swift in Sources */,
+				81B6DE7E2607F961005C8940 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		81C0A0AE23A1954B005B3D68 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "AltSign-macOS";
-			targetProxy = 81C0A0AD23A1954B005B3D68 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		81BB91F02396DB9300EED6B7 /* Debug */ = {
+		8135043126077CBE009F9964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -352,6 +502,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -376,17 +527,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-I/opt/homebrew/opt/openssl@1.1/include",
+				);
+				OTHER_LDFLAGS = "-L/opt/homebrew/opt/openssl@1.1/lib";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		81BB91F12396DB9300EED6B7 /* Release */ = {
+		8135043226077CBE009F9964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -412,6 +568,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -430,41 +587,59 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-I/opt/homebrew/opt/openssl@1.1/include",
+				);
+				OTHER_LDFLAGS = "-L/opt/homebrew/opt/openssl@1.1/lib";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		81BB91F32396DB9300EED6B7 /* Debug */ = {
+		8135043426077CBE009F9964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = cook/cook.entitlements;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OpenSSL/macos/include\"";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				PRODUCT_BUNDLE_IDENTIFIER = it.ned.cook;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/macos/lib";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		81BB91F42396DB9300EED6B7 /* Release */ = {
+		8135043526077CBE009F9964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = cook/cook.entitlements;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Y4562FZWB;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OpenSSL/macos/include\"";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				PRODUCT_BUNDLE_IDENTIFIER = it.ned.cook;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/macos/lib";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -472,25 +647,44 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		81BB91E62396DB9300EED6B7 /* Build configuration list for PBXProject "cook" */ = {
+		8135042726077CBE009F9964 /* Build configuration list for PBXProject "Cook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				81BB91F02396DB9300EED6B7 /* Debug */,
-				81BB91F12396DB9300EED6B7 /* Release */,
+				8135043126077CBE009F9964 /* Debug */,
+				8135043226077CBE009F9964 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		81BB91F22396DB9300EED6B7 /* Build configuration list for PBXNativeTarget "cook" */ = {
+		8135043326077CBE009F9964 /* Build configuration list for PBXNativeTarget "cook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				81BB91F32396DB9300EED6B7 /* Debug */,
-				81BB91F42396DB9300EED6B7 /* Release */,
+				8135043426077CBE009F9964 /* Debug */,
+				8135043526077CBE009F9964 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/n3d1117/AltSign.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		81A2E8972607EE8800476DC6 /* AltSign-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */;
+			productName = "AltSign-Static";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 81BB91E32396DB9300EED6B7 /* Project object */;
+	rootObject = 8135042426077CBE009F9964 /* Project object */;
 }

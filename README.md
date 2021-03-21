@@ -150,7 +150,7 @@ Here are some real world examples on how to use cook (authentication part is omi
 </details>
 
 ## Installation
-Download latest `cook.zip` release from the [releases page](https://github.com/n3d1117/cook/releases/latest) to your downloads folder and unzip it.
+Download latest `cook.zip` release from the [releases page](https://github.com/n3d1117/cook/releases/latest) to your downloads folder and unzip it (or build manually from Xcode).
 
 If you haven't already, you should install and enable the `Mail.app` plugin called `CookMailPlugin` (this is needed to fetch the correct headers to communicate with Apple's servers).
 
@@ -161,9 +161,10 @@ Run the following commands:
 
 ```bash
 $ cd ~/downloads/cook/
-$ [sudo] mkdir -p /Library/Mail/Bundles
-$ [sudo] cp -r CookMailPlugin.mailbundle /Library/Mail/Bundles
-$ [sudo] defaults write "/Library/Preferences/com.apple.mail" EnableBundles 1
+$ sudo codesign -f -s - CookMailPlugin.mailbundle
+$ sudo mkdir -p /Library/Mail/Bundles
+$ sudo cp -R CookMailPlugin.mailbundle /Library/Mail/Bundles
+$ sudo defaults write "/Library/Preferences/com.apple.mail" EnableBundles 1
 ```
 Then enable the plugin:
 
@@ -177,20 +178,19 @@ Then enable the plugin:
 
  </details>
 
-Once the plugin is installed and enabled, you can simply use cook from the command line:
+Once the plugin is installed and enabled, you can use cook from the command line:
 
 ```bash
 $ cd ~/downloads/cook/
 $ ./cook -h
 ```
-NOTE: `AltSign.framework` should always be in the same folder as `cook` binary.
 
 ## Build manually
 Run the following commands:
 
 ```bash
-$ cd ~/desktop
-$ git clone https://github.com/n3d1117/cook.git --recurse-submodules
+$ cd ~/downloads
+$ git clone https://github.com/n3d1117/cook.git
 $ cd cook/
 $ open cook.xcodeproj
 ```
