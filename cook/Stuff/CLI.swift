@@ -40,6 +40,11 @@ enum CLI {
         case outputIpaPath = "output-ipa"
         case inputP12 = "p12"
         
+        // Anisette server
+        case port = "port"
+        case secret = "secret"
+        case base64AnisetteData = "base64-anisette-data"
+        
         func allowedInEnvironmentVariables() -> Bool {
             return self == .appleId || self == .password
         }
@@ -60,6 +65,7 @@ enum CLI {
         case updateProvisioningProfile = "update_profile"
         case downloadProvisioningProfiles = "download_profiles"
         case resignIpa = "resign"
+        case anisetteServer = "anisette_server"
     }
     
     static func noArgumentsProvided() -> Bool {

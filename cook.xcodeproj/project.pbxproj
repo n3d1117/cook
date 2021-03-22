@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		816149052607D33A006B5D2B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816149002607D2DD006B5D2B /* libcrypto.a */; };
 		816149062607D33C006B5D2B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816149022607D2E0006B5D2B /* libssl.a */; };
+		8174C3042608FDD700F450B1 /* AnisetteServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8174C3032608FDD700F450B1 /* AnisetteServer.swift */; };
+		8174C3082608FE1C00F450B1 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 8174C3072608FE1C00F450B1 /* Swifter */; };
 		81A2E8982607EE8800476DC6 /* AltSign-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 81A2E8972607EE8800476DC6 /* AltSign-Static */; };
 		81B6DE7C2607F961005C8940 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE6D2607F961005C8940 /* Logger.swift */; };
 		81B6DE7D2607F961005C8940 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6DE6E2607F961005C8940 /* Authenticator.swift */; };
@@ -61,6 +63,7 @@
 		8135042C26077CBE009F9964 /* cook */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cook; sourceTree = BUILT_PRODUCTS_DIR; };
 		816149002607D2DD006B5D2B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Dependencies/OpenSSL/macos/lib/libcrypto.a; sourceTree = "<group>"; };
 		816149022607D2E0006B5D2B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Dependencies/OpenSSL/macos/lib/libssl.a; sourceTree = "<group>"; };
+		8174C3032608FDD700F450B1 /* AnisetteServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnisetteServer.swift; sourceTree = "<group>"; };
 		818C72862607FAA1006F5E9C /* CookMailPlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CookMailPlugin.xcodeproj; path = CookMailPlugin/CookMailPlugin.xcodeproj; sourceTree = "<group>"; };
 		81A2E89D2607EEE500476DC6 /* pem2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
 		81A2E89E2607EEE500476DC6 /* pem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 				81A2E8982607EE8800476DC6 /* AltSign-Static in Frameworks */,
 				816149052607D33A006B5D2B /* libcrypto.a in Frameworks */,
 				816149062607D33C006B5D2B /* libssl.a in Frameworks */,
+				8174C3082608FE1C00F450B1 /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +368,7 @@
 				81B6DE762607F961005C8940 /* CreateCertificate.swift */,
 				81B6DE772607F961005C8940 /* RegisterBundleId.swift */,
 				81B6DE782607F961005C8940 /* DownloadProvisioningProfiles.swift */,
+				8174C3032608FDD700F450B1 /* AnisetteServer.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 			name = cook;
 			packageProductDependencies = (
 				81A2E8972607EE8800476DC6 /* AltSign-Static */,
+				8174C3072608FE1C00F450B1 /* Swifter */,
 			);
 			productName = altsignswiftpackagetest;
 			productReference = 8135042C26077CBE009F9964 /* cook */;
@@ -426,6 +432,7 @@
 			mainGroup = 8135042326077CBE009F9964;
 			packageReferences = (
 				81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */,
+				8174C3062608FE1C00F450B1 /* XCRemoteSwiftPackageReference "swifter" */,
 			);
 			productRefGroup = 8135042D26077CBE009F9964 /* Products */;
 			projectDirPath = "";
@@ -466,6 +473,7 @@
 				81B6DE7C2607F961005C8940 /* Logger.swift in Sources */,
 				81B6DE832607F961005C8940 /* RegisterDevice.swift in Sources */,
 				81B6DE882607F961005C8940 /* API.swift in Sources */,
+				8174C3042608FDD700F450B1 /* AnisetteServer.swift in Sources */,
 				81B6DE862607F961005C8940 /* DownloadProvisioningProfiles.swift in Sources */,
 				81B6DE812607F961005C8940 /* UpdateProvisioningProfile.swift in Sources */,
 				81B6DE7D2607F961005C8940 /* Authenticator.swift in Sources */,
@@ -668,6 +676,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8174C3062608FE1C00F450B1 /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 		81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/n3d1117/AltSign.git";
@@ -679,6 +695,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8174C3072608FE1C00F450B1 /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8174C3062608FE1C00F450B1 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
 		81A2E8972607EE8800476DC6 /* AltSign-Static */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 81A2E8962607EE8800476DC6 /* XCRemoteSwiftPackageReference "AltSign" */;

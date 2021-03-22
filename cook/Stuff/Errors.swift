@@ -25,6 +25,9 @@ enum UsageError: Error {
     case outputMustBeAFolder
     
     case missingIpaPath
+    
+    case missingSecret
+    case malformedCustomAnisetteData
 }
 
 enum AuthError: Error {

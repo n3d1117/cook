@@ -72,7 +72,7 @@ enum Utils {
     static func header() {
         print("#\n#  \(binaryName()) | made with ♡ by ned\n#  https://github.com/n3d1117/cook\n#\n")
     }
-
+    
     static func showHelp() {
         header()
         print("Usage: ./\(binaryName()) [AUTHENTICATION] [RECIPE] [RECIPE_ARGUMENTS]\n")
@@ -127,5 +127,9 @@ enum Utils {
         print(" download_profiles recipe")
         print("   'profiles_count':      Number of profiles downloaded")
         print("   'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)\n")
+        print("SERVER MODE: Listen to a specific port and respond with freshly generated base64 encoded anisette data:\n")
+        print("  - Usage: ./\(binaryName()) anisette_server --port 8080 --secret some_custom_secret")
+        print("  - Then 127.0.0.1:8080/some_custom_secret returns the following json: {'base64_encoded_data':'data', 'success':'1'}")
+        print("  - You can then do ./\(binaryName()) [usual_args] --base64-anisette-data 'data' to use custom anisette data in your requests.\n")
     }
 }

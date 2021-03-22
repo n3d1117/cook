@@ -22,7 +22,9 @@ To authenticate you can pass the following arguments to any recipe:
 
 If you prefer, you can set these environment variables instead: `COOK_APPLEID_EMAIL` and `COOK_APPLEID_PASSWORD`.
 
-NOTE: Your Apple ID is **never** sent to anyone but Apple. Feel free to create a new Apple ID account to test it.
+You can also specify `--base64-anisette-data` to use custom base64 encoded anisette data in your requests (for example, generated with `anisette_server` recipe).
+
+**NOTE:** Your Apple ID is **never** sent to anyone but Apple. Feel free to create a new Apple ID account to test it.
 
 ### Recipes
 - **`create_certificate`** Create certificate (`.pem` or `.p12`) with arguments:
@@ -71,6 +73,12 @@ NOTE: Your Apple ID is **never** sent to anyone but Apple. Feel free to create a
 	--machine-name        Optional machine name to use when adding certificate (defaults to 'cook', ignored if --p12 is specified)
 	-f                    Revoke certificate (if --p12 is not specified) if needed, register app id if needed
 	```
+- **`anisette_server`** Listen to a specific port and respond with freshly generated base64 encoded anisette data. Arguments:
+
+	```
+	--port                Server port (defaults to 8080)
+	--secret              Secret path (the url will be 127.0.0.1:{PORT}/{SECRET})
+	```
 
 ### JSON Mode
 In JSON mode (`-j, --json` flag), command output is formatted as JSON. 
@@ -92,6 +100,10 @@ In JSON mode (`-j, --json` flag), command output is formatted as JSON.
  - download_profiles recipe
 	 'profiles_count':      Number of profiles downloaded
 	 'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)
+ 
+ - anisette_server recipe
+   'success':             '0' or '1'
+   'base64_encoded_data': Base 64 encoded anisette data
 ```
 </details>
 

@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import AltSign
 
 let logger = Logger()
 let outputAsJSON = CLI.outputAsJson()
 let auth = Authenticator(appleId: CLI.parseArgument(.appleId) ?? "", password: CLI.parseArgument(.password) ?? "")
 
 func _abort(_ error: Error) {
-    logger.log(.error, "\(error)\n")
+    logger.log(.error, "\(error)")
+    if (error as NSError).code == NSURLErrorBadServerResponse {
+        logger.log(.error, "Error 403 detected (unauthorized). This machine could be banned from making requests.")
+    }
     if outputAsJSON { logger.json(from: Utils.dictionaryForFailedResult(with: error)) }
     exit(EXIT_FAILURE)
 }
@@ -24,14 +28,22 @@ func _success(_ JSONValues: [String: String] = [:]) {
 }
 
 func main() {
-
+    
     if CLI.noArgumentsProvided() || CLI.help() {
         Utils.showHelp()
         return _success()
     }
     
     let f = CLI.force()
-
+    
+    if let customAnisetteData = CLI.parseArgument(.base64AnisetteData) {
+        logger.log(.verbose, "Using custom anisette data!")
+        guard let json = try? JSONSerialization.jsonObject(with: Data(base64Encoded: customAnisetteData)!, options: .fragmentsAllowed) as? [String: String], let anisetteData = ALTAnisetteData(json: json) else {
+            return _abort(UsageError.malformedCustomAnisetteData)
+        }
+        auth.customAnisetteData = anisetteData
+    }
+    
     // Create certificate
     if CLI.containsRecipe(.createCertificate) {
         logger.log(.info, "Recipe: create certificate")
@@ -97,7 +109,7 @@ func main() {
         }
         UpdateProvisioningProfile(bundleId: bundleId, outputPath: outputProfile, force: f).execute()
     }
-        
+    
     // Download provisioning profiles
     else if CLI.containsRecipe(.downloadProvisioningProfiles) {
         logger.log(.info, "Recipe: download provisioning profiles")
@@ -113,7 +125,7 @@ func main() {
         }
         DownloadProvisioningProfiles(bundleId: bundleId, outputPath: outputProfiles).execute()
     }
-        
+    
     // Resign .ipa
     else if CLI.containsRecipe(.resignIpa) {
         logger.log(.info, "Recipe: resign ipa")
@@ -146,17 +158,31 @@ func main() {
         } else {
             machinePrefix = Utils.defaulMachinePrefix
         }
-
+        
         ResignApp(ipaUrl: ipaUrl, outputIpaUrl: outputIpaUrl, p12Path: p12Path, p12Password: p12Password, machinePrefix: machinePrefix, force: f).execute()
+    }
+    
+    else if CLI.containsRecipe(.anisetteServer) {
+        
+        var port: in_port_t = 8080
+        if let p = CLI.parseArgument(.port), let castedPort = in_port_t(p) {
+            port = castedPort
+            logger.log(.verbose, "Server port: \(port)")
+        }
+        
+        guard let secret = CLI.parseArgument(.secret) else { return _abort(UsageError.missingSecret) }
+        logger.log(.verbose, "Server secret: \(secret)")
+        
+        AnisetteServer(port: port, secret: secret).execute()
     }
     
     else {
         Utils.showHelp()
         return _success()
     }
-
+    
 }
 
 main()
 
-RunLoop.main.run()
+dispatchMain()

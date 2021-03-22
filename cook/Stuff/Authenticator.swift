@@ -19,6 +19,8 @@ class Authenticator {
     var appleId: String
     var password: String
     
+    var customAnisetteData: ALTAnisetteData? = nil
+    
     deinit {
         DistributedNotificationCenter.default.removeObserver(self)
     }
@@ -30,17 +32,24 @@ class Authenticator {
     
     func start() {
         
-        // Open Mail.app
-        Utils.shell("open", "-j", "-g", "-a", "Mail")
-        
-        delay(1) {
-            DistributedNotificationCenter.default.addObserver(self, selector: #selector(self.received), name: .receivedAnisetteData, object: nil)
-            DistributedNotificationCenter.default().postNotificationName(.fetchAnisetteData, object: nil, userInfo: ["uuid": UUID().uuidString], deliverImmediately: true)
+        if let anisetteData = customAnisetteData {
+            logger.log(.info, "Logging in using custom anisette data...")
+            ALTAppleAPI.shared.authenticate(appleID: self.appleId, password: self.password, anisetteData: anisetteData, verificationHandler: nil, completionHandler: { [weak self] (account, session, error) in
+                self?.completionHandler?(account, session, error)
+            })
+        } else {
+            // Open Mail.app
+            Utils.shell("open", "-j", "-g", "-a", "Mail")
+            
+            delay(1) {
+                DistributedNotificationCenter.default.addObserver(self, selector: #selector(self.received), name: .receivedAnisetteData, object: nil)
+                DistributedNotificationCenter.default().postNotificationName(.fetchAnisetteData, object: nil, userInfo: ["uuid": UUID().uuidString], deliverImmediately: true)
+            }
         }
     }
     
     @objc func received(_ notification: Notification) {
-
+        
         func abort(_ error: AuthError) {
             completionHandler?(nil, nil, error)
         }
@@ -53,7 +62,6 @@ class Authenticator {
             if let range = anisetteData.deviceDescription.lowercased().range(of: "(com.apple.mail") {
                 var adjustedDescription = anisetteData.deviceDescription[..<range.lowerBound]
                 adjustedDescription += "(com.apple.dt.Xcode/3594.4.19)>"
-                
                 anisetteData.deviceDescription = String(adjustedDescription)
             }
             
