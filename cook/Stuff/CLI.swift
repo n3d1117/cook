@@ -14,6 +14,7 @@ enum CLI {
         // Authentication
         case appleId
         case password
+        case twoFactorCode = "2fa-code"
         
         // Certificates
         case machinePrefix = "machine-name"

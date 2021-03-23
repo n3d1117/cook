@@ -9,6 +9,7 @@
 enum UsageError: Error {
     case missingAppleId
     case missingPassword
+    case missing2FACode
     
     case missingOutput
     
@@ -36,6 +37,7 @@ enum AuthError: Error {
     case malformedAnisetteData
     case unableToUnarchive
     case unknownAuthFailure
+    case malformed2FACode
 }
 
 enum TeamError: Error {
