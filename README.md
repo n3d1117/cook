@@ -104,7 +104,6 @@ In JSON mode (`-j, --json` flag), command output is formatted as JSON.
    'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)
  
  - anisette_server recipe
-   'success':             '0' or '1'
    'base64_encoded_data': Base 64 encoded anisette data
 ```
 </details>
@@ -214,6 +213,7 @@ $ open cook.xcodeproj
 * Riley Testut's `AltPlugin.mailbundle` (part of [AltServer](https://github.com/rileytestut/AltStore/tree/master/AltServer))
 * [Kabir Oberai](https://twitter.com/kabiroberai) for the authentication code in AltSign
 * [appdb](https://appdb.to/) for the idea!
+* [Zond80](https://github.com/ZonD80/) for handling 2FA code
 
 ## License
 Licensed under GNU General Public License v3.0. See [LICENSE](LICENSE) file for further information.
