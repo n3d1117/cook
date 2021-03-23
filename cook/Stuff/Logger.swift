@@ -21,7 +21,7 @@ struct Logger {
     }
     
     func log(_ level: LogLevel, _ message: String) {
-        guard !outputAsJSON else { return }
+        guard !outputAsJSON || level == .verbose else { return }
         switch level {
         case .verbose: if CLI.verbose() { print("[⠇] \(message)") }
         case .info: print("[*] \(message)")

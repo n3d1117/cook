@@ -90,16 +90,16 @@ In JSON mode (`-j, --json` flag), command output is formatted as JSON.
  'error':                 Error description (if success is 0)
 
  - create_certificate recipe
-	 'pem_cert':            Plain text PEM cert
-	 'base64_p12_cert':     Base 64 encoded P12 cert
-	 'p12_password':        Plain text P12 password
+   'pem_cert':            Plain text PEM cert
+   'base64_p12_cert':     Base 64 encoded P12 cert
+   'p12_password':        Plain text P12 password
 
  - update_profile recipe
-	 'base_64_profile':     Base 64 encoded mobileprovision
+   'base_64_profile':     Base 64 encoded mobileprovision
 
  - download_profiles recipe
-	 'profiles_count':      Number of profiles downloaded
-	 'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)
+   'profiles_count':      Number of profiles downloaded
+   'base64_profile_i':    i-th base 64 encoded mobileprovision (0<i<=profiles_count)
  
  - anisette_server recipe
    'success':             '0' or '1'
