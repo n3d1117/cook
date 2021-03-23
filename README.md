@@ -22,6 +22,8 @@ To authenticate you can pass the following arguments to any recipe:
 
 If you prefer, you can set these environment variables instead: `COOK_APPLEID_EMAIL` and `COOK_APPLEID_PASSWORD`.
 
+Pass `--2fa-code` to specify the six-digit two factor authentication code.
+
 You can also specify `--base64-anisette-data` to use custom base64 encoded anisette data in your requests (for example, generated with `anisette_server` recipe).
 
 **NOTE:** Your Apple ID is **never** sent to anyone but Apple. Feel free to create a new Apple ID account to test it.

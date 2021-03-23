@@ -34,9 +34,8 @@ class Authenticator {
         
         if let anisetteData = customAnisetteData {
             logger.log(.info, "Logging in using custom anisette data...")
-            ALTAppleAPI.shared.authenticate(appleID: self.appleId, password: self.password, anisetteData: anisetteData, verificationHandler: nil, completionHandler: { [weak self] (account, session, error) in
-                self?.completionHandler?(account, session, error)
-            })
+            logger.log(.verbose, "customAnisetteData is \(anisetteData)")
+            authenticateAndComplete(anisetteData: anisetteData)
         } else {
             // Open Mail.app
             Utils.shell("open", "-j", "-g", "-a", "Mail")
@@ -64,15 +63,29 @@ class Authenticator {
                 adjustedDescription += "(com.apple.dt.Xcode/3594.4.19)>"
                 anisetteData.deviceDescription = String(adjustedDescription)
             }
-            
             logger.log(.info, "Logging in...")
-            ALTAppleAPI.shared.authenticate(appleID: self.appleId, password: self.password, anisetteData: anisetteData, verificationHandler: nil, completionHandler: { [weak self] (account, session, error) in
-                self?.completionHandler?(account, session, error)
-            })
+            authenticateAndComplete(anisetteData: anisetteData)
             
         } catch {
             return abort(.unableToUnarchive)
         }
     }
     
+    fileprivate func handle2FAVerificationCode(_ completionHandler: @escaping (String?) -> Void) {
+        DispatchQueue.main.async {
+            let twoFactorCode = CLI.parseArgument(.twoFactorCode)
+            
+            guard twoFactorCode != nil else { return _abort(UsageError.missing2FACode) }
+            guard twoFactorCode!.count == 6 else { return _abort(AuthError.malformed2FACode) }
+                
+            logger.log(.verbose, "2fa code is \(twoFactorCode!)")
+            completionHandler(twoFactorCode)
+        }
+    }
+    
+    fileprivate func authenticateAndComplete(anisetteData: ALTAnisetteData) {
+        ALTAppleAPI.shared.authenticate(appleID: self.appleId, password: self.password, anisetteData: anisetteData, verificationHandler: handle2FAVerificationCode, completionHandler: { [weak self] (account, session, error) in
+            self?.completionHandler?(account, session, error)
+        })
+    }
 }

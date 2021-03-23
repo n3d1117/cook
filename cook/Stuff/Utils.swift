@@ -83,6 +83,7 @@ enum Utils {
         print("  To authenticate pass the following arguments to any recipe:")
         print("    --appleId             Apple ID Email")
         print("    --password            Apple ID Password\n")
+        print("    --2fa-code            Two Factor Authentication code\n")
         print("  or, if you prefer, you can set these environment variables:")
         print("    COOK_APPLEID_EMAIL")
         print("    COOK_APPLEID_PASSWORD\n")
