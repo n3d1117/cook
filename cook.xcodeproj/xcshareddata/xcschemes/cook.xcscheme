@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8135042B26077CBE009F9964"
                BuildableName = "cook"
                BlueprintName = "cook"
-               ReferencedContainer = "container:Cook.xcodeproj">
+               ReferencedContainer = "container:cook.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,21 @@
             BlueprintIdentifier = "8135042B26077CBE009F9964"
             BuildableName = "cook"
             BlueprintName = "cook"
-            ReferencedContainer = "container:Cook.xcodeproj">
+            ReferencedContainer = "container:cook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "LDFLAGS"
+            value = "-L/opt/homebrew/opt/openssl@3/lib"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "PATH"
+            value = "/opt/homebrew/opt/openssl@3/bin:$PATH"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -64,7 +76,7 @@
             BlueprintIdentifier = "8135042B26077CBE009F9964"
             BuildableName = "cook"
             BlueprintName = "cook"
-            ReferencedContainer = "container:Cook.xcodeproj">
+            ReferencedContainer = "container:cook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
